@@ -34,7 +34,7 @@ const getRazaByIdHandler= async (req, res)=> {
 };
 
 const createNewDogHandler= (req, res)=> {
-    let { weight, height, name, life_span, image }= req.body;
+    let { weight, height, name, life_span, image, temperament, from_DB }= req.body;
     try {
         res.status(200).json(createNewDog(weight, height, name, life_span, image))
     } catch (error) {

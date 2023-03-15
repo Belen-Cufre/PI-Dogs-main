@@ -65,7 +65,7 @@ const createNewDog= async (weight, height, name, life_span, image)=> {
             height,
             name,
             life_span,
-            image
+            image,
         })
         return newDog;
     }
