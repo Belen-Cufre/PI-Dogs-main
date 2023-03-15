@@ -2,9 +2,10 @@ const {gettingAlltempsfromApi}= require ("../controllers/tempControllers")
 
 const getAllTempHandlers= async(req, res)=>{
 try {
-    res.status(200).json(gettingAlltempsfromApi())
+    // let result= await gettingAlltempsfromApi()
+    await res.status(200).json(gettingAlltempsfromApi())
 } catch (error) {
-    res.status(500).send("Impossible to connect with API")
+    res.status(404).send("Impossible to get the requested info")
 }
 }
 

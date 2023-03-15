@@ -1,22 +1,27 @@
+// require('dotenv').config();
 const axios= require ("axios");
-const Temperament = require ("../db")
+const {Temperament} = require ("../db")
+// const {API_KEY} = process.env
 
 let gettingAlltempsfromApi= async ()=> {
-    let data= await axios (`https://api.thedogapi.com/v1/breeds?api_key={API_KEY}`).data
+    let datas= await axios ('https://api.thedogapi.com/v1/breeds')
 
-    let allTemps= []
+    let allTemps= datas.data;
+    allTemps.map((el) => (el.temperament ? el.temperament : ""))
+        .map((el) => el.split(", "));
 
-    data.map(elem=>{
-        allTemps.push(elem.temperament)
-    })
-    let temps= allTemps.reduce((acc,item)=>{
-        if(!acc.includes(item)){
-          acc.push(item);
+    let temps = [...new Set(allTemps.flat())];
+
+    temps.forEach((el)=> {
+        if (el) {
+            Temperament.findOrCreate({
+                where:{
+                    name: el
+                },
+            });
         }
-        return acc;
-    },[]);
-    
-    Temperament.create({temps})
-};
+    });
+    temps = await Temperament.findAll();
+ };
 
 module.exports= {gettingAlltempsfromApi};

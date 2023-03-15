@@ -23,20 +23,21 @@ const getBreedsHandler= async (req, res)=> {
 };
 
 const getRazaByIdHandler= async (req, res)=> {
-    const {id} = req.params
+    const {idRaza} = req.params
     try {
-        let result= await getBreedById(id);
+        let result= await getBreedById(idRaza);
         return res.status(200).json(result)    
     } catch (error) {
-        res.status(400).send(`The Dog with id ${id} does not exist`)
+        res.status(400).json({error: error.message})
     }
 
 };
 
-const createNewDogHandler= (req, res)=> {
+const createNewDogHandler= async (req, res)=> {
     let { weight, height, name, life_span, image, temperament, from_DB }= req.body;
     try {
-        res.status(200).json(createNewDog(weight, height, name, life_span, image))
+        await createNewDog(weight, height, name, life_span, image, temperament)
+        res.status(200).send("New dog successfully created")
     } catch (error) {
         res.status(400).json({error: error.message})
     }

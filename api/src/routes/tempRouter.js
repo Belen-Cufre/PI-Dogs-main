@@ -2,7 +2,7 @@
 
 const { Router } =  require ("express");
 
-const getAllTempHandlers = require("../handlers/tempHandlers")
+const {getAllTempHandlers} = require("../handlers/tempHandlers")
 
 //una vez construidos, requerir los handlers!
 
