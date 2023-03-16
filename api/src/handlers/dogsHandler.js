@@ -1,11 +1,9 @@
+//these handlers have to do the get and posts of my dogs.
+//for that, they need to have internal logics which I created in another folder of controllers. I import the controllers which control the logics of these handlers
 
 const { getBreeds, getBreedsByName, getBreedById, createNewDog }= require("../controllers/dogsController")
 
-//I bring all my controllers and create the dog hanlders
-
-//This function allows me to get all breeds from dogs and ti get the breeds of those dogs which names had been sent by query
-
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//this handler has to get all breeds. It can receive a query name. In this case, brings just the names. It brings data from an Api and from the DB
 const getBreedsHandler= async (req, res)=> {
     const {name} = req.query;
     try {
@@ -22,6 +20,7 @@ const getBreedsHandler= async (req, res)=> {
     }
 };
 
+//this handler has to get a breed by id. It can receiveS a param. It can bring data from an Api or from the DB
 const getRazaByIdHandler= async (req, res)=> {
     const {idRaza} = req.params
     try {
@@ -32,6 +31,8 @@ const getRazaByIdHandler= async (req, res)=> {
     }
 
 };
+
+//this handler has to create a new dog or breed. It has to receive information from the body. It stores the new dogs on the DB
 
 const createNewDogHandler= async (req, res)=> {
     let { weight, height, name, life_span, image, temperament, from_DB }= req.body;

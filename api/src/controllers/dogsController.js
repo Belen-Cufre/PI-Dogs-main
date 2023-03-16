@@ -1,8 +1,13 @@
+//In this file, I created all the controllers I will use on my dog handlers.
+//It is a file which will control the logics on my dogs route.
+
 require('dotenv').config();
 const axios = require ("axios");
 const {Dog}= require ("../db");
 const {Temperament}= require ("../db");
 const {API_KEY} = process.env
+
+//This function will bring all the info (.data) from the Api which I need to have. Same info criteria I used to create dogs
 
 const getBreedsFromApi= async()=> {
     let apiData= await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
@@ -19,6 +24,8 @@ const getBreedsFromApi= async()=> {
     });
     return fromApi;
 }
+
+//This function will bring all all de data from the Db;
 
 const getBreedsFromDb= async()=> {
     let dbData= await Dog.findAll({
@@ -43,6 +50,8 @@ const getBreedsFromDb= async()=> {
     return fromDb;
 };
 
+//Unify in one function what comes from the api and what comes from db
+
 const getBreeds= async() => {
     let breedsApi= await getBreedsFromApi();
     let breedsDb= await getBreedsFromDb();
@@ -50,35 +59,7 @@ const getBreeds= async() => {
     return breeds;
 }
 
-
-// const getBreeds= async()=> {
-//     let breeds= []
-//     let fromApi= await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-//     console.log(fromApi.data)
-//     fromApi.data.map((inst)=>{
-//         return {
-//         id: inst.id,
-//         weight: inst.weight,
-//         height: inst.height,
-//         name: inst.name,
-//         life_span: inst.life_span,
-//         image: inst.image.url
-//         }
-//     });
-
-//     let fromDb= await Dog.findAll({
-//         include: {
-//             model: Temperament,
-//             attributes: ["name"],
-//             through:{
-//                 attributes: [],
-//             },
-//         },
-//     });
-
-//     breeds= [...fromApi.data, ...fromDb]
-//     return breeds;
-// };
+//This function will bring only the info related with the requested name. If the name does not exist, it will throw an error
 
 const getBreedsByName= async (name)=>{
     
@@ -92,17 +73,9 @@ const getBreedsByName= async (name)=>{
     else {
         throw new Error("This breed does not exist")
     }
-    
-    // if (name2) {
-    // let result = breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));   
-    // if(result.length){
-    //     return result
-    //     }
-    // }
-    // else {
-    //     throw new Error("This breed does not exist")
-    // }
 };
+
+//This function will bring only the info belonging to the requested id. If the id does not exist, it will throw an error
 
 const getBreedById= async (id)=> {
     console.log(id)
@@ -123,6 +96,8 @@ const getBreedById= async (id)=> {
         return result
     }
 };
+
+//This function will create a new dog in my Db with all the requested info.
 
 const createNewDog= async (weight, height, name, life_span, image, temperament)=> {
     if (!weight || !height || !name || !life_span || !image || !temperament){

@@ -1,14 +1,14 @@
-//I create the "temperaments" router, whicha has all the req and res handlers and all the answers which are targeted to /temperaments route.
-
 const { Router } =  require ("express");
+
+//I create the "temperaments" router, whicha has all the req and res handlers and all the answers which are targeted to /temperaments route.
+//For that, I import the handler which handles the temperaments
 
 const {getAllTempHandlers} = require("../handlers/tempHandlers")
 
-//una vez construidos, requerir los handlers!
+//temp router
 
 const tempRouter= Router();
 
-tempRouter.get("/", getAllTempHandlers);
-
+tempRouter.get("/", getAllTempHandlers);//this handler has to get all temperaments from the Api into my DB.
 
 module.exports = tempRouter;

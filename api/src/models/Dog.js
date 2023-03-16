@@ -1,6 +1,6 @@
 const { DataTypes} = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+//I create the Dog model, which will have the attributes requested on the Readme.
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
