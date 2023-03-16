@@ -29,8 +29,6 @@ const getBreedsFromDb= async()=> {
        },
     });
 
-    let prueba= dbData.map(x=> x)
-    console.log(prueba)
     let fromDb= dbData.map((inst)=>{
         return {
         id: inst.id,
@@ -39,7 +37,7 @@ const getBreedsFromDb= async()=> {
         name: inst.name,
         life_span: inst.life_span,
         image: inst.image,
-        temperament: inst.temperament?inst.temperament.map(el=> el.name).join(", "):[]
+        temperament: inst.temperament?inst.temperament.map(el=> el.name).join(", "):["Happy"]
         }
     });
     return fromDb;
@@ -86,15 +84,24 @@ const getBreedsByName= async (name)=>{
     
     let name2= name.toLowerCase();
     let breeds = await getBreeds();
-    if (name2) {
-    let result = breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));   
+    let result= breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));
+        
     if(result.length){
         return result
-        }
     }
     else {
         throw new Error("This breed does not exist")
     }
+    
+    // if (name2) {
+    // let result = breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));   
+    // if(result.length){
+    //     return result
+    //     }
+    // }
+    // else {
+    //     throw new Error("This breed does not exist")
+    // }
 };
 
 const getBreedById= async (id)=> {

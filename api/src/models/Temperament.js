@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('Temperament', {
+   
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -11,7 +12,5 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
     },
-  },
-  {timestamp: false}
-  )
+  });
 };
