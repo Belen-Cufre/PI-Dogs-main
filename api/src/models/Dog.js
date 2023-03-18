@@ -5,12 +5,12 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
     weight: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false, 
     },
 
     height: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false,
     },
 

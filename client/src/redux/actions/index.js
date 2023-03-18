@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_BREEDS } from "../action_types/action_types";
+import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT } from "../action_types/action_types";
 
 export const getAllBreeds = ()=> {
     return async function(dispatch){
@@ -9,4 +9,25 @@ export const getAllBreeds = ()=> {
             payload: info.data
         })
     }
-} 
+}
+
+export const orderByName= (payload)=> {
+    return {
+        type: ORDER_BY_NAME,
+        payload
+    }
+}
+
+export const orderByWeight= (payload)=> {
+    return {
+        type: ORDER_BY_WEIGHT,
+        payload
+    }
+}
+
+export const filterByOrigin= (payload)=> {
+    return {
+        type: FILTER_BY_ORIGIN,
+        payload
+    }
+}

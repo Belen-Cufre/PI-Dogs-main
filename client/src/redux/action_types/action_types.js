@@ -1,1 +1,4 @@
 export const GET_ALL_BREEDS = "GET_ALL_BREEDS";
+export const ORDER_BY_NAME= "ORDER_BY_NAME";
+export const ORDER_BY_WEIGHT= "ORDER_BY_WEIGHT";
+export const FILTER_BY_ORIGIN= "FILTER_BY_ORIGIN";
