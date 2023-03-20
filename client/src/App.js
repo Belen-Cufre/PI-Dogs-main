@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
 import Form from "./components/form/Form";
 import NavBar from "./components/navBar/NavBar";
+import SearchBar from './components/home/searchBar/Search';
 
 
 

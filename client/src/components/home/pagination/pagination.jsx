@@ -4,7 +4,7 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
 
     const pages = [];
 
-    for (let i=0; i <= Math.ceil(dogs/dogsPerPage); i++){
+    for (let i=0; i <= Math.floor(dogs/dogsPerPage); i++){
         pages.push(i+1)
     }
 

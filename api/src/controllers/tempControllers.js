@@ -14,28 +14,52 @@ const {Temperament} = require ("../db")
 //*create a temperament in Temperament model for each array found on the info beforementioned
 //*finally bring all the information stored on my DB.
 
-let gettingAlltempsfromApi= async ()=> {
-    let datas= await axios ('https://api.thedogapi.com/v1/breeds')
 
-    let allTemps= datas.data
-        .map((el) => (el.temperament ? el.temperament : ""))
-        .map((el) => el?.split(", "));
-
-    let temps = [...new Set(allTemps.flat())];
-
-    temps.forEach((el)=> {
-        if (el) {
-            Temperament.bulkCreate({
-                where:{
-                    name: el
-                },
-            });
-        }
+const gettingAlltempsfromApi = async()=>{
+    const allData = await axios.get(
+        "https://api.thedogapi.com/v1/breeds"
+);
+    try {
+    let everyTemperament = allData.data
+    .map((dog) => (dog.temperament ? dog.temperament : "No info"))
+    .map((dog) => dog?.split(", "));
+    let eachTemperament = [...new Set(everyTemperament.flat())];
+    eachTemperament.forEach((el) => {
+    if (el) {
+        Temperament.findOrCreate({
+        where: { name: el },
+        });
+    }
     });
-    temps = await Temperament.findAll({
-        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
-       });
-    return temps;
- };
+    eachTemperament = await Temperament.findAll({attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+});
+    return eachTemperament;
+} catch (error) {
+    throw new Error(error = error.message);
+}
+}
+// let gettingAlltempsfromApi= async ()=> {
+//     let datas= await axios ('https://api.thedogapi.com/v1/breeds')
+
+//     let allTemps= datas.data
+//         .map((el) => (el.temperament ? el.temperament : ""))
+//         .map((el) => el?.split(", "));
+
+//     let temps = [...new Set(allTemps.flat())];
+
+//     temps.forEach((el)=> {
+//         if (el) {
+//             Temperament.findOrCreate({
+//                 where:{
+//                     name: el
+//                 },
+//             });
+//         }
+//     });
+//     temps = await Temperament.findAll({
+//         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }
+//        });
+//     return temps;
+//  };
 
 module.exports= {gettingAlltempsfromApi};

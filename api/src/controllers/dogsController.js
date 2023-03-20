@@ -11,10 +11,11 @@ const {API_KEY} = process.env
 
 const getBreedsFromApi= async()=> {
     let apiData= await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-    let fromApi= await apiData.data.map((inst)=>{
+    
+        let fromApi= await apiData.data.map((inst)=>{
         return {
         id: inst.id,
-        weight: inst.weight,
+        weight: inst.weight.metric,
         height: inst.height,
         name: inst.name,
         life_span: inst.life_span,
@@ -44,7 +45,8 @@ const getBreedsFromDb= async()=> {
         name: inst.name,
         life_span: inst.life_span,
         image: inst.image,
-        temperament: inst.temperament?inst.temperament.map(el=> el.name).join(", "):["Happy"]
+        temperament: inst.temperament?inst.temperament.map(el=> el.name).join(", "):["Happy"],
+        from_DB: true,
         }
     });
     return fromDb;
