@@ -115,25 +115,86 @@ const getBreedsByName= async (name)=>{
 
 //This function will bring only the info belonging to the requested id. If the id does not exist, it will throw an error
 
-const getBreedById= async (id)=> {
-    console.log(id)
-    console.log(isNaN(id))
-    if(!isNaN(id)){
-        let result= await axios(`https://api.thedogapi.com/v1/breeds/${id}?api_key=${API_KEY}`)
-        console.log(result)
-        if(!Object.keys(result.data).length){
-            throw new Error (`The Dog with id ${id} does not exist`)
-        }
-        return result.data
-    }
-    else {
-        let result= await Dog.findByPk(id)
-        if(!Object.keys(result).length){
-            throw new Error (`The Dog with id ${id} does not exist`)
-        }
-        return result
-    }
+const getBreedById = async (id, origin) => {
+	try {
+		if (origin === 'db') {
+			let dogDB = await Dog.findOne({
+				where: {
+					id: id,
+				},
+				include: {
+					model: Temperament,
+					attributes: ['name'],
+					through: { attributes: [] },
+				},
+			});
+
+			if (dogDB) {
+				return {
+					id: inst.id,
+					weight: inst.weight,
+					height: inst.height,
+					name: inst.name,
+					life_span: inst.life_span,
+					image: inst.image,
+					temperament: inst.temperament
+						? inst.temperament.map((el) => el.name).join(', ')
+						: ['Happy'],
+					from_DB: true,
+				};
+			}
+		} else {
+
+			let result = await axios(
+				`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`,
+			);
+
+            let perrito = result.data.find(el=> el.id === Number(id) );
+
+				let weightMin = parseInt(perrito.weight.metric.slice(0, 2).trim());
+
+				let weightMax = parseInt(perrito.weight.metric.slice(4).trim());
+
+				let averageWeight = weightMax + weightMin;
+
+				if (weightMin && weightMax) {
+					averageWeight = averageWeight / 2;
+				} else if (weightMin && !weightMax) {
+					weightMax = weightMin;
+					averageWeight = weightMin;
+				} else if (!weightMin && weightMax) {
+					weightMin = weightMax;
+					averageWeight = weightMax;
+				} else if (inst.name === 'Smooth Fox Terrier') {
+					weightMin = 6;
+					weightMax = 9;
+					averageWeight = (weightMax + weightMin) / 2;
+				} else {
+					weightMin = 20;
+					weightMax = 30;
+					averageWeight = (weightMax + weightMin) / 2;
+				}
+
+				let dogDetail = {
+					id: perrito.id,
+					name: perrito.name,
+					height: perrito.height.metric,
+					life_span: perrito.life_span,
+					image: perrito.image ? perrito.image.url : " ",
+					temperament: perrito.temperament,
+					weightMin: weightMin,
+					weightMax: weightMax,
+					averageWeight: averageWeight,
+				};
+
+				return dogDetail;
+			}
+		
+	} catch (error) {
+		return { error: `The dog with id ${id} does not exist` };
+	}
 };
+
 
 //This function will create a new dog in my Db with all the requested info.
 

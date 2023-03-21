@@ -23,9 +23,14 @@ const getBreedsHandler= async (req, res)=> {
 //this handler has to get a breed by id. It can receiveS a param. It can bring data from an Api or from the DB
 const getRazaByIdHandler= async (req, res)=> {
     const {idRaza} = req.params
+    let origin= isNaN(idRaza) ? "db" : "api";
+    
     try {
-        let result= await getBreedById(idRaza);
-        return res.status(200).json(result)    
+        let result= await getBreedById(idRaza, origin);
+
+        if(result.error) throw new Error(result.error);
+
+        res.status(200).json(result)    
     } catch (error) {
         res.status(400).json({error: error.message})
     }

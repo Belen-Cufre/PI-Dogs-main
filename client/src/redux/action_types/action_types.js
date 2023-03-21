@@ -1,5 +1,5 @@
 export const GET_ALL_BREEDS = "GET_ALL_BREEDS";
-export const GET_ALL_TEMPS = "GET_ALL_TEMPSS";
+export const GET_ALL_TEMPS = "GET_ALL_TEMPS";
 export const ORDER_BY_NAME= "ORDER_BY_NAME";
 export const FILTER_BY_ORIGIN= "FILTER_BY_ORIGIN";
 export const FILTER_BY_TEMPER= "FILTER_BY_TEMPER";

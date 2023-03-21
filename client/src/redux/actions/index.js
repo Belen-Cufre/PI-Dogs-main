@@ -65,17 +65,14 @@ export const getDogsByName= (name)=> {
     }
 }
 
+
 export const getDogDetail= (id)=> {
     return async function(dispatch){
-        try {
-            let dogWithId = await axios (`http://localhost:3001/dogs/${id}`)
+        let json = await axios (`http://localhost:3001/dogs/${id}`)
 
-            return dispatch({
-                type: GET_DOG_DETAIL,
-                payload: dogWithId.data
+        return dispatch({
+            type: GET_DOG_DETAIL,
+            payload: json.data
             })
-        } catch (error) {
-            console.log(error)         
-        }
     }
 }

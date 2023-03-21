@@ -49,9 +49,9 @@ const reducer = (state = initialState, action) => {
                 dogs: ordered
             }
 
-        case ORDER_BY_WEIGHT:
-            if(action.payload === "min"){
-                 aux= state.dogs.sort((dogA, dogB) => {
+        case ORDER_BY_WEIGHT: 
+            if (action.payload === "min") {
+                aux = state.dogs.sort((dogA, dogB) => {
                     if(dogA.weightMin < dogB.weightMin) return -1;
                     if(dogA.weightMin > dogB.weightMin) return 1;
                     return 0;
@@ -80,6 +80,7 @@ const reducer = (state = initialState, action) => {
                 dogs: aux
             }
         }
+    
 
         case FILTER_BY_ORIGIN:
             // const allDogs = state.allDogs;

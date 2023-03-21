@@ -1,26 +1,31 @@
 import React from 'react';
-import axios from 'axios';
 import { getDogDetail } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import Dog from '../home/dog/Dog';
 import { useParams } from 'react-router-dom';
 
+
 const Detail = () => {
-const dogDetail= useSelector(state => state.dogDetail);
-let id= useParams();
+  let dispatch= useDispatch();
+  let { id }= useParams();
+  const dogDetail= useSelector((state) => state.dogDetail);
 
-useEffect(() => {
-  getDogDetail(id)
-}, [])
-
+  useEffect(() => {
+    dispatch(getDogDetail(id))
+  }, [])
 
   return (
     
     <div>
-      <h2>{dogDetail.id}</h2>
-      <h3>{dogDetail.height}</h3>    
-      <h3>{dogDetail.temperament}</h3>
+      <h3>Id: {dogDetail?.id}</h3>
+      <h1>Breed: {dogDetail?.name}</h1>
+      <img src={dogDetail?.image ? dogDetail.image : "img"} alt="img" />
+      <h3>Weight:</h3>
+      <span>Min: {dogDetail?.weightMin}</span> - <span>Max: {dogDetail?.weightMax}</span>
+      <h3>Average weight: {dogDetail?.averageWeight}</h3> 
+      <h3>Height (min - max): {dogDetail?.height?.metric}</h3>
+      <h3>Life expectancy: {dogDetail?.life_span}</h3>    
+      <h3>Temperament: {dogDetail?.temperament}</h3>
     </div>
 
   )

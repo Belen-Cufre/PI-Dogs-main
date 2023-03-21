@@ -82,17 +82,20 @@ const AllDogs = () => {
 
       <div>Alphabetical Ordering</div>
       <select defaultValue="name" onChange={event =>{handleOrder1(event)}}>
+        <option value="name" disabled selected></option>
         <option value="a-z">from A to Z</option>
         <option value="z-a">from Z to A</option>
       </select>
 
       <div>Weight Ordering</div>
       <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
+        <option value="weight" disabled selected></option>
         <option value="min">From lighter to heavier</option>
         <option value="max">From heavier to lighter</option>
       </select>
       <div>Average weight</div>
       <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
+        <option value="aver" disabled selected></option>
         <option value="ave">Order from lighter to heavier</option>
         <option value="ave-max">Order from heavier to lighter</option>
       </select>
@@ -127,6 +130,7 @@ const AllDogs = () => {
         currentDogs?.map(dog=> {
           return (
           <Dog
+          id= {dog.id}
           key= {dog.id}
           image= {dog.image}
           name= {dog.name}

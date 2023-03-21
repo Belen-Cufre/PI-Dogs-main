@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 
-const Dog = ({image, name, temperament, weightMin, weightMax, averageWeight}) => {
+const Dog = ({image, name, temperament, weightMin, weightMax, averageWeight, id}) => {
   return (
     <div>
-      <Link to= "/detail">
+      <Link to= {`/detail/${id}`}>
         <img src={image} alt={name} width='200px' height='200px'/>
       </Link>
       <h2>{name}</h2>
