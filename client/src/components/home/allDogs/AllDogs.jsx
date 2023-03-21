@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
-import {filterByOrigin, getAllBreeds, orderByName, orderMinFromMin, orderMinFromMax, orderMaxFromMin, orderMaxFromMax, orderAverageFromMin, orderAverageFromMax, filterByTemper, getAllTemperaments} from "../../../redux/actions/index"
+import {filterByOrigin, getAllBreeds, orderByName, orderByWeight, filterByTemper, getAllTemperaments} from "../../../redux/actions/index"
 import Dog from "../dog/Dog"
 import Pagination from '../pagination/Pagination';
 
@@ -41,24 +41,7 @@ const AllDogs = () => {
   }
 
   const handleOrder2 = (event) =>{
-    if (event.target.value === "min-min"){
-      dispatch (orderMinFromMin(event.target.value))
-    }
-    if (event.target.value === "min-max"){
-      dispatch (orderMinFromMax(event.target.value))
-    }
-    if (event.target.value === "max-min"){
-      dispatch (orderMaxFromMin(event.target.value))
-    }
-    if (event.target.value === "max-max"){
-      dispatch (orderMaxFromMax(event.target.value))
-    }
-    if (event.target.value === "ave-min"){
-      dispatch (orderAverageFromMin(event.target.value))
-    }
-    if (event.target.value === "ave-max"){
-      dispatch (orderAverageFromMax(event.target.value))
-    }
+    dispatch(orderByWeight(event.target.value))
     setCurrentPage(1);
     setOrder(`Ordered ${event.target.value}`);
   }
@@ -87,11 +70,6 @@ const AllDogs = () => {
   }, []);
 
 
-
-
-
-
-
   //All the logic done, I return what I want to be rendered
   //Orders: by name (OK), by weight (DONE, BUT NOT WORKING!)
   //Filter by DB (DONE, BUT NOT WORKING!)
@@ -103,25 +81,20 @@ const AllDogs = () => {
     <div>
 
       <div>Alphabetical Ordering</div>
-      <select onChange={event =>{handleOrder1(event)}}>
+      <select defaultValue="name" onChange={event =>{handleOrder1(event)}}>
         <option value="a-z">from A to Z</option>
         <option value="z-a">from Z to A</option>
       </select>
+
       <div>Weight Ordering</div>
-      <div>Min weight</div>
-      <select onChange={event =>{handleOrder2(event)}}>
-        <option value="min-min">from lighter to heavier</option>
-        <option value="min-max">from heavier to lighter</option>
-      </select>
-      <div>Max weight</div>
-      <select onChange={event =>{handleOrder2(event)}}>
-        <option value="max-min">from lighter to heavier</option>
-        <option value="max-max">from heavier to lighter</option>
+      <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
+        <option value="min">From lighter to heavier</option>
+        <option value="max">From heavier to lighter</option>
       </select>
       <div>Average weight</div>
-      <select onChange={event =>{handleOrder2(event)}}>
-        <option value="ave-min">from lighter to heavier</option>
-        <option value="ave-max">from heavier to lighter</option>
+      <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
+        <option value="ave">Order from lighter to heavier</option>
+        <option value="ave-max">Order from heavier to lighter</option>
       </select>
 
       <div>Filter dogs' sourcing</div>
@@ -158,7 +131,9 @@ const AllDogs = () => {
           image= {dog.image}
           name= {dog.name}
           temperament= {dog.temperament}
-          weight= {dog.weight}
+          weightMin= {dog.weightMin}
+          weightMax= {dog.weightMax}
+          averageWeight= {dog.averageWeight}
           />
           )
         })

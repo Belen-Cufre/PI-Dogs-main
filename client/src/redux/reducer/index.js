@@ -1,5 +1,4 @@
-import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_MINFROMMIN, ORDER_MINFROMMAX,
-ORDER_MAXFROMMIN, ORDER_MAXFROMMAX, ORDER_AVEFROMMIN, ORDER_AVEFROMMAX, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME} from "../action_types/action_types";
+import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME, GET_DOG_DETAIL} from "../action_types/action_types";
 
 //here I create my reducer which will handle my global state
 
@@ -11,17 +10,8 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+    let aux = []; //auxiliary
 
-    let weights= state.dogs.map(dogui => {
-        return dogui.weight.split(" - ") // weight: ["2" "4"]
-        .map((inst)=> parseInt(inst)) //weight: [2, 4]
-   });
-
-    let averWeight= state.dogs.map(dogui => {
-        return dogui.weight.split(" - ") // weight: ["2" "4"]
-        .map((inst)=>(parseInt(inst[0]) + parseInt(inst[1])) /2)
-    });
-    
     switch(action.type) {
         case GET_ALL_BREEDS:
             return {
@@ -59,82 +49,35 @@ const reducer = (state = initialState, action) => {
                 dogs: ordered
             }
 
-        case ORDER_MINFROMMIN:
+        case ORDER_BY_WEIGHT:
+            if(action.payload === "min"){
+                 aux= state.dogs.sort((dogA, dogB) => {
+                    if(dogA.weightMin < dogB.weightMin) return -1;
+                    if(dogA.weightMin > dogB.weightMin) return 1;
+                    return 0;
+                })
+            } else if (action.payload === "max") {
+                aux = state.dogs.sort((dogA, dogB) => {
+                    if(dogA.weightMax > dogB.weightMax) return -1;
+                    if(dogA.weightMax < dogB.weightMax) return 1;
+                    return 0;
+                })
+            } else if (action.payload === "ave"){
+                aux = state.dogs.sort((dogA, dogB) => {
+                    if(dogA.averageWeight < dogB.averageWeight) return -1;
+                    if(dogA.averageWeight > dogB.averageWeight) return 1;
+                    return 0;
+                })
+            } else if (action.payload === "ave-max"){
+                aux = state.dogs.sort((dogA, dogB) => {
+                    if(dogA.averageWeight > dogB.averageWeight) return -1;
+                    if(dogA.averageWeight < dogB.averageWeight) return 1;
+                    return 0;
+                })
 
-            if(action.payload === "min-min") {
-                let ordered1= weights.sort((dogA, dogB) => {
-                if (dogA.weight[0] > dogB.weight[0])
-                return 1;
-                if (dogB.weight[0] > dogA.weight[0])
-                return -1;
-                return 0
-            })
-            return {
+            return{
                 ...state,
-                dogs: ordered1
-            }
-        }
-
-        case ORDER_MINFROMMAX:
-            if(action.payload === "min-max") {
-                let ordered2= weights.sort((dogA, dogB) => {
-                if (dogA.weight[0] > dogB.weight[0])
-                return -1;
-                if (dogB.weight[0] > dogA.weight[0])
-                return 1;
-                return 0
-            })
-            return {
-                ...state,
-                dogs: ordered2
-            }
-        }
-        
-        case ORDER_MAXFROMMIN:
-            if(action.payload === "max-min") {
-                let ordered3= weights.sort((dogA, dogB) => {
-                if (dogA.weight[1] > dogB.weight[1])
-                return 1;
-                if (dogB.weight[1] > dogA.weight[1])
-                return -1;
-                return 0
-            })
-            return {
-                ...state,
-                dogs: ordered3
-            }
-        }
-
-        case ORDER_MAXFROMMAX:
-            if(action.payload === "max-max") {
-                let ordered4= weights.sort((dogA, dogB) => {
-                if (dogA.weight[1] > dogB.weight[1])
-                return -1;
-                if (dogB.weight[1] > dogA.weight[1])
-                return 1;
-                return 0
-            })
-            return {
-                ...state,
-                dogs: ordered4
-            }
-        }
-
-        case ORDER_AVEFROMMIN:
-            if(action.payload === "ave-min") {
-                let ordered5= averWeight.sort()
-            return {
-                ...state,
-                dogs: ordered5
-            }
-        }
-
-        case ORDER_AVEFROMMAX:
-            if(action.payload === "ave-max") {
-                let ordered6= averWeight.reverse()
-            return {
-                ...state,
-                dogs: ordered6
+                dogs: aux
             }
         }
 
@@ -161,6 +104,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 dogs: action.payload
+            }
+        
+        case GET_DOG_DETAIL:
+            return {
+                ...state,
+                dogDetail: action.payload
             }
 
             

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_MINFROMMAX, ORDER_MINFROMMIN, ORDER_MAXFROMMIN, ORDER_MAXFROMMAX, ORDER_AVEFROMMIN, ORDER_AVEFROMMAX, GET_ALL_TEMPS, FILTER_BY_TEMPER,
-GET_DOGS_BY_NAME } from "../action_types/action_types";
+import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, GET_ALL_TEMPS, FILTER_BY_TEMPER,
+GET_DOGS_BY_NAME, GET_DOG_DETAIL } from "../action_types/action_types";
 
 export const getAllBreeds = ()=> {
     return async function(dispatch){
@@ -30,45 +30,10 @@ export const orderByName= (payload)=> {
     }
 }
 
-export const orderMinFromMin= (payload)=> {
+export const orderByWeight= (payload)=> {
     return {
-        type: ORDER_MINFROMMIN,
+        type: ORDER_BY_WEIGHT,
         payload
-    }
-}
-
-export const orderMinFromMax= (payload)=> {
-    return {
-        type: ORDER_MINFROMMAX,
-        payload 
-    }
-}
-
-export const orderMaxFromMin= (payload)=> {
-    return {
-        type: ORDER_MAXFROMMIN,
-        payload 
-    }
-}
-
-export const orderMaxFromMax= (payload)=> {
-    return {
-        type: ORDER_MAXFROMMAX,
-        payload 
-    }
-}
-
-export const orderAverageFromMin= (payload)=> {
-    return {
-        type: ORDER_AVEFROMMIN,
-        payload 
-    }
-}
-
-export const orderAverageFromMax= (payload)=> {
-    return {
-        type: ORDER_AVEFROMMAX,
-        payload 
     }
 }
 
@@ -96,6 +61,21 @@ export const getDogsByName= (name)=> {
           })
         } catch (error) {
           console.log(error)
+        }
+    }
+}
+
+export const getDogDetail= (id)=> {
+    return async function(dispatch){
+        try {
+            let dogWithId = await axios (`http://localhost:3001/dogs/${id}`)
+
+            return dispatch({
+                type: GET_DOG_DETAIL,
+                payload: dogWithId.data
+            })
+        } catch (error) {
+            console.log(error)         
         }
     }
 }
