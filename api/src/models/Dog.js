@@ -4,9 +4,18 @@ const { DataTypes} = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
-    weight: {
+    weightMax: {
       type: DataTypes.STRING,
       allowNull: false, 
+    },
+
+    weightMin: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+    },
+
+    averageWeight: {
+      type: DataTypes.INTEGER, 
     },
 
     height: {

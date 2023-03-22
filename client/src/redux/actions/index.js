@@ -76,3 +76,10 @@ export const getDogDetail= (id)=> {
             })
     }
 }
+
+export const createDog= (payload)=> {
+    return async function(dispatch) {
+        let newDog= await axios.post("http://localhost:3001/dogs", payload);
+        return newDog
+    }
+}

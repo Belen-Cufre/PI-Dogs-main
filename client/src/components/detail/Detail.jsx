@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-
 const Detail = () => {
   let dispatch= useDispatch();
   let { id }= useParams();

@@ -18,19 +18,15 @@ const getBreedsFromApi= async()=> {
             let averageWeight = weightMax + weightMin
         
             if (weightMin && weightMax) {
-                weightMin = weightMin;
-                weightMax = weightMax;
                 averageWeight= averageWeight / 2;
 
             } else if (weightMin && !weightMax) {
-                weightMin = weightMin;
                 weightMax = weightMin;
-                averageWeight= ((weightMax) + (weightMin)) / 2;
+                averageWeight= averageWeight / 2;
 
             } else if (!weightMin && weightMax) {
                 weightMin = weightMax;
-                weightMax = weightMax;
-                averageWeight= ((weightMax) + (weightMin)) / 2;
+                averageWeight= averageWeight / 2;
 
             } else {
                 if (inst.name === "Smooth Fox Terrier") {
@@ -76,7 +72,9 @@ const getBreedsFromDb= async()=> {
     let fromDb= dbData.map((inst)=>{
         return {
         id: inst.id,
-        weight: inst.weight,
+        weightMax: inst.weightMax,
+        weightMin: inst.weightMin,
+        averageWeight: inst.averageWeight,
         height: inst.height,
         name: inst.name,
         life_span: inst.life_span,
@@ -132,7 +130,9 @@ const getBreedById = async (id, origin) => {
 			if (dogDB) {
 				return {
 					id: inst.id,
-					weight: inst.weight,
+					weightMax: inst.weightMax,
+					weightMin: inst.weightMin,
+                    averageWeight: inst.averageWeight,
 					height: inst.height,
 					name: inst.name,
 					life_span: inst.life_span,
@@ -198,17 +198,22 @@ const getBreedById = async (id, origin) => {
 
 //This function will create a new dog in my Db with all the requested info.
 
-const createNewDog= async (weight, height, name, life_span, image, temperament)=> {
-    if (!weight || !height || !name || !life_span || !image || !temperament){
+const createNewDog= async (weightMin, weightMax, height, name, life_span, image, temperament)=> {
+    if (!weightMin || !weightMax || !height || !name || !life_span || !image || !temperament){
     throw new Error("Missing information. Please, complete all the required data.")
     }
     else{
         let newDog= await Dog.create({
-            weight,
-            height,
-            name,
-            life_span,
-            image,
+            id,
+			name,
+			height,
+			life_span,
+			image,
+			temperament,
+			weightMin,
+			weightMax,
+			averageWeight,
+            from_DB,
         })
         let temper= await Temperament.findAll({
             where: {

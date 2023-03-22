@@ -1,4 +1,4 @@
-import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME, GET_DOG_DETAIL} from "../action_types/action_types";
+import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG} from "../action_types/action_types";
 
 //here I create my reducer which will handle my global state
 
@@ -112,7 +112,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dogDetail: action.payload
             }
-
+        case CREATE_DOG:
+            return {
+                ...state,
+            }
             
         default:
             return {...state}
