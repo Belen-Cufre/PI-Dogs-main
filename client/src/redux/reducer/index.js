@@ -74,12 +74,15 @@ const reducer = (state = initialState, action) => {
                     if(dogA.averageWeight < dogB.averageWeight) return 1;
                     return 0;
                 })
+            } else {
+                console.log("error")
+            }
 
             return{
                 ...state,
                 dogs: aux
             }
-        }
+        
     
 
         case FILTER_BY_ORIGIN:

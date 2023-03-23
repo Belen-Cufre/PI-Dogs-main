@@ -67,7 +67,7 @@ const AllDogs = () => {
   useEffect(()=> {
     dispatch(getAllBreeds())
     dispatch(getAllTemperaments())
-  }, []);
+  }, [dispatch]);
 
 
   //All the logic done, I return what I want to be rendered
