@@ -1,0 +1,14 @@
+.Landing{
+    margin: 0;
+    padding: 0;
+    background-image: url(../landing/380976.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+

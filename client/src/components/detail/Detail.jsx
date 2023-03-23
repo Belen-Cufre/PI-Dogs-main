@@ -22,7 +22,7 @@ const Detail = () => {
       <h3>Weight:</h3>
       <span>Min: {dogDetail?.weightMin}</span> - <span>Max: {dogDetail?.weightMax}</span>
       <h3>Average weight: {dogDetail?.averageWeight}</h3> 
-      <h3>Height (min - max): {dogDetail?.height?.metric}</h3>
+      <h3>Height (min - max): {dogDetail?.height}</h3>
       <h3>Life expectancy: {dogDetail?.life_span}</h3>    
       <h3>Temperament: {dogDetail?.temperament}</h3>
     </div>

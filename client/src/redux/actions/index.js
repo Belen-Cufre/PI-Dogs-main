@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, GET_ALL_TEMPS, FILTER_BY_TEMPER,
-GET_DOGS_BY_NAME, GET_DOG_DETAIL } from "../action_types/action_types";
+GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG } from "../action_types/action_types";
 
 export const getAllBreeds = ()=> {
     return async function(dispatch){
@@ -77,8 +77,8 @@ export const getDogDetail= (id)=> {
     }
 }
 
-export const createDog= (payload)=> {
-    return async function(dispatch) {
+export const createNewDog= (payload)=> {
+    return async function(dispatch){
         let newDog= await axios.post("http://localhost:3001/dogs", payload);
         return newDog
     }

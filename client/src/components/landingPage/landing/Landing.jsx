@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Landing.css";
 
 const Landing= () => {
     return (
-        <div>
-            <div>Wellcome to this Dog's World</div>
+        <div className={styles.Landing}>
+            <div>Wellcome to Dog's World</div>
             <Link to="/home">
                 <button>Enter</button>
             </Link>

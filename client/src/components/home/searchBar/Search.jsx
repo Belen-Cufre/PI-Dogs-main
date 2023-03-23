@@ -14,13 +14,9 @@ const handleChange= (event)=> {
 
 const handleSearch= (event) =>{
     event.preventDefault();
-    if (dog.length === 0) {
-      return alert("Please, chose a name");
-    } else {
       dispatch(getDogsByName(dog));
       setDog("");
     }
-  }
 
    return (
       <div>

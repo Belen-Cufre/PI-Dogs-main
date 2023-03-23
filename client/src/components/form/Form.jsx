@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react"
+import {useState, useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { createDog, getAllTemperaments } from "../../redux/actions";
+import { createNewDog, getAllTemperaments } from "../../redux/actions";
 import validate from "./validate"
 
 
@@ -14,8 +14,8 @@ const Form = () => {
 			height: "",
 			life_span: "",
 			image: "",
-			weightMin: "",
-			weightMax: "",
+			weightMin: "0",
+			weightMax: "0",
       temperaments: [],
   })
 
@@ -33,6 +33,10 @@ const Form = () => {
   }
 
   const handleTemperamentChoices = (event)=> {
+    // let { temp }= event.target;
+    // if (inputs.temperaments.includes(temp)) {
+    //   return alert ("Temperaments can not be repeated")
+    // }
     setInputs({
       ...inputs,
       temperaments: [...inputs.temperaments, event.target.value]
@@ -48,15 +52,15 @@ const Form = () => {
 
   const handleSubmit= (event)=> {
     event.preventDefault();
-    dispatch(createDog(inputs))
+    dispatch(createNewDog(inputs))
     alert ("Dog successfully added")
     setInputs({
       name: "",
 			height: "",
 			life_span: "",
 			image: "",
-			weightMin: "",
-			weightMax: "",
+			weightMin: "0",
+			weightMax: "0",
       temperaments: [],
     })
   }
@@ -78,9 +82,12 @@ const Form = () => {
           type="text" 
           name="name"
           value={inputs.name}
+          placeholder={"Choose a name"}
           onChange={(event)=>handleInputs(event)}/>
           {error.name && <strong>{error.name}</strong>}
         </div>
+
+        <br />
 
         <div>
           <label>Image: </label>
@@ -88,54 +95,74 @@ const Form = () => {
           type="text" 
           name="image"
           value={inputs.image}
+          placeholder= {"Add an image"}
           onChange={(event)=>handleInputs(event)}/>
           {error.image && <strong>{error.image}</strong>}
         </div>
 
+        <br />
+
         <div>
-          <h5>Weight</h5>
-          <label>Min: </label>
+          <label>Weight:</label>
+          <br />
+          <br />
+          <label>Min: </label> 
           <input 
-          type="number" 
+          type="text" 
           name="weightMin"
           value={inputs.weightMin}
-          min= "1"
-          max= "100"
+          // min= "1"
+          // max= "100"
           onChange={(event)=>handleInputs(event)}/>
           {error.weightMin && <strong>{error.weightMin}</strong>}
 
+          <br />
+
           <label>Max: </label>
           <input 
-          type="number" 
+          type="text" 
           name="weightMax"
           value={inputs.weightMax}
-          min= "1"
-          max= "100"
+          // min= "1"
+          // max= "100"
           onChange={(event)=>handleInputs(event)}/>
           {error.weightMax && <strong>{error.weightMax}</strong>}
+
         </div>
+
+        <br />
 
         <div>
-          <label>Height: </label>
-          <input 
-          type="text" 
-          name="height"
-          value={inputs.height}
-          onChange={(event)=>handleInputs(event)}/>
-          {error.height && <strong>{error.height}</strong>}
+          <label>Height: 
+            <input 
+            type="text" 
+            name="height"
+            value={inputs.height}
+            placeholder= {"For example: 55 - 67"}
+            onChange={(event)=>handleInputs(event)}/>
+            {error.height && <strong>{error.height}</strong>}
+            (in centimeters)
+          </label>
         </div>
+
+        <br />
 
         <div>
-          <label>Life expectancy: </label>
-          <input 
-          type="number" 
-          name="life_span"
-          value={inputs.life_span}
-          onChange={(event)=>handleInputs(event)}/>
-          {error.life_span && <strong>{error.life_span}</strong>}
+          <label>Life expectancy: 
+            <input 
+            type="text" 
+            name="life_span"
+            value={inputs.life_span}
+            placeholder={"For example: 10 - 15"}
+            onChange={(event)=>handleInputs(event)}/>
+            {error.life_span && <strong>{error.life_span}</strong>}
+            years
+          </label>
         </div>
 
-        <h5>Temperaments:</h5>
+        <br />
+
+        <label>Temperaments: </label>
         <select value={temperaments} onChange={(event)=>handleTemperamentChoices(event)}>
           <option value="all"></option>
           {temperaments.map((temp)=> {
@@ -148,8 +175,13 @@ const Form = () => {
         </select>
         <h5>My dog is...</h5>
         <ul><li>{inputs.temperaments.map(temp => temp + " ,")}</li></ul>
-
-        <button type="submit" onClick={(event)=>handleSubmit(event)}>Add my dog</button>
+        <button 
+        type="submit"
+        onClick={(event)=>handleSubmit(event)}
+        disabled= {
+          error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
+        } 
+        >Add my dog</button>
         
       </form>
       {inputs.temperaments.map(temp =>

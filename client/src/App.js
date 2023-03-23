@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Landing from './components/landingPage/landing/Landing';
 import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
@@ -11,9 +11,10 @@ import Jwthf from './components/jwthf/JustWatchThemHaveFun';
 
 
 function App() {
+  let location= useLocation()
   return (
-    <div>
-      <NavBar/>
+    <div className={location.pathname === "/" && "Landing"}>
+      {location.pathname !== "/" && <NavBar/>}
       <Routes>
         <Route exact path= "/" element={<Landing/>} />
         <Route exact path= "/home" element={<Home/>} />

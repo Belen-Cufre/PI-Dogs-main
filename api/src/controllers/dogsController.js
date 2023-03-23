@@ -74,7 +74,7 @@ const getBreedsFromDb= async()=> {
         id: inst.id,
         weightMax: inst.weightMax,
         weightMin: inst.weightMin,
-        averageWeight: inst.averageWeight,
+        averageWeight: (inst.weightMax + inst.weightMin)/2,
         height: inst.height,
         name: inst.name,
         life_span: inst.life_span,
@@ -91,7 +91,7 @@ const getBreedsFromDb= async()=> {
 const getBreeds= async() => {
     let breedsApi= await getBreedsFromApi();
     let breedsDb= await getBreedsFromDb();
-    let breeds= breedsApi.concat(breedsDb);
+    let breeds= breedsDb? [...breedsApi, ...breedsDb] : breedsApi;
     return breeds;
 }
 
@@ -101,7 +101,7 @@ const getBreedsByName= async (name)=>{
     
     let name2= name.toLowerCase();
     let breeds = await getBreeds();
-    let result= breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));
+    let result= await breeds.filter((inst)=> inst.name.toLowerCase().includes(name2));
         
     if(result.length){
         return result
@@ -129,16 +129,16 @@ const getBreedById = async (id, origin) => {
 
 			if (dogDB) {
 				return {
-					id: inst.id,
-					weightMax: inst.weightMax,
-					weightMin: inst.weightMin,
-                    averageWeight: inst.averageWeight,
-					height: inst.height,
-					name: inst.name,
-					life_span: inst.life_span,
-					image: inst.image,
-					temperament: inst.temperament
-						? inst.temperament.map((el) => el.name).join(', ')
+					id: dogDB.id,
+					weightMax: dogDB.weightMax,
+					weightMin: dogDB.weightMin,
+                    averageWeight: (dogDB.weightMax + dogDB.weightMin) /2,
+					height: dogDB.height,
+					name: dogDB.name,
+					life_span: dogDB.life_span,
+					image: dogDB.image,
+					temperament: dogDB.temperament
+						? dogDB.temperament.map((el) => el.name).join(', ')
 						: ['Happy'],
 					from_DB: true,
 				};
@@ -198,22 +198,19 @@ const getBreedById = async (id, origin) => {
 
 //This function will create a new dog in my Db with all the requested info.
 
-const createNewDog= async (weightMin, weightMax, height, name, life_span, image, temperament)=> {
+const createNewDog= async ( weightMin, weightMax, height, name, life_span, image, temperament, from_DB)=> {
     if (!weightMin || !weightMax || !height || !name || !life_span || !image || !temperament){
     throw new Error("Missing information. Please, complete all the required data.")
     }
     else{
         let newDog= await Dog.create({
-            id,
-			name,
-			height,
-			life_span,
-			image,
-			temperament,
-			weightMin,
-			weightMax,
-			averageWeight,
-            from_DB,
+            name: name,
+			height: height,
+			life_span: life_span,
+			image: image,
+			weightMin: weightMin,
+			weightMax: weightMax,
+            averageWeight: (weightMax + weightMin) /2,
         })
         let temper= await Temperament.findAll({
             where: {
@@ -222,6 +219,7 @@ const createNewDog= async (weightMin, weightMax, height, name, life_span, image,
         })
         await newDog.addTemperament(temper);
     }
+    // return newDog
 };
 
 module.exports= {

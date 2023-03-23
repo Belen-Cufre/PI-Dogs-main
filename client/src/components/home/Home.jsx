@@ -16,9 +16,9 @@ const Home = () => {
   
   return (
     <div>
-      <h1></h1>
+      <h1>Dogs...Who can´t love them!</h1>
       <SearchBar />
-      <button onClick={(event)=> handleClick(event)}>Get all dogs</button>
+      <button onClick={(event)=> handleClick(event)}>Get all dogs back</button>
       <AllDogs/>
     </div>
   )

@@ -15,7 +15,8 @@ module.exports = (sequelize) => {
     },
 
     averageWeight: {
-      type: DataTypes.INTEGER, 
+      type: DataTypes.STRING,
+      allowNull: true 
     },
 
     height: {
