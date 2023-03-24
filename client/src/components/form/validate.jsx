@@ -21,8 +21,12 @@ const validate =({name, height, image, life_span, weightMax, weightMin, temperam
         errors.weightMax= "Please choose a maximun weight"
     } else if (weightMax.trim() > 100 || weightMax.trim() < 1){
         errors.weightMax= "Maximun weight can not be higher than 100 or lesser than 1" 
-    } else if (weightMin >= weightMax){
+    }
+
+    if (weightMax && weightMin){
+        if (parseInt(weightMin) >= parseInt(weightMax)){
         errors.weightMax= "Maximun weight can not be inferior or equal than minimun weight"
+    }
     }
 
     if(!height){

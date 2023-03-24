@@ -1,0 +1,26 @@
+body {
+    background-image: url("https://images.unsplash.com/photo-1589496933738-f5c27bc146e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3Jhc3N8ZW58MHx8MHx8&w=1000&q=80");
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    font-family: 'Times New Roman', Times;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 10px;
+}
+
+.filters {
+    background-color: #706957;
+    box-shadow: 0px 0px 15px 0px #1f1d36;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 30%;
+}

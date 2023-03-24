@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import {filterByOrigin, getAllBreeds, orderByName, orderByWeight, filterByTemper, getAllTemperaments} from "../../../redux/actions/index"
 import Dog from "../dog/Dog"
 import Pagination from '../pagination/Pagination';
+import style from "./allDogs.module.css";
 
 
 //This function has the complete logic of /home path
@@ -79,53 +80,54 @@ const AllDogs = () => {
 
   return (
     <div>
-      <div>Filter dogs' sourcing</div>
-      <select onChange={event => {handleFilterByOrigin(event)}}>
-        <option value="All">All dogs</option>
-        <option value="api">Api dogs</option>
-        <option value="from_DB">My dogs</option>
-      </select>
+      <div className={style.filters}>
+        <div>Filter dogs' sourcing</div>
+        <select onChange={event => {handleFilterByOrigin(event)}}>
+          <option value="All">All dogs</option>
+          <option value="api">Api dogs</option>
+          <option value="from_DB">My dogs</option>
+        </select>
 
-      <div>Filter dogs by temperament</div>
-      <select value={temperament} onChange={event => {handleFilterByTemper(event)}}>
-        <option value="all">All Temperaments</option>
-            {temperaments.map((temp) => {
-              return (
-                <option value={temp} key={temp}>
-                  {temp}
-                </option>
-              );
-            })}
-      </select> 
+        <div>Filter dogs by temperament</div>
+        <select value={temperament} onChange={event => {handleFilterByTemper(event)}}>
+          <option value="all">All Temperaments</option>
+              {temperaments.map((temp) => {
+                return (
+                  <option value={temp} key={temp}>
+                    {temp}
+                  </option>
+                );
+              })}
+        </select> 
 
-      <div>Alphabetical Ordering</div>
-      <select defaultValue="name" onChange={event =>{handleOrder1(event)}}>
-        <option value="name" disabled selected></option>
-        <option value="a-z">from A to Z</option>
-        <option value="z-a">from Z to A</option>
-      </select>
+        <div>Alphabetical Ordering</div>
+        <select defaultValue="name" onChange={event =>{handleOrder1(event)}}>
+          <option value="name" disabled selected></option>
+          <option value="a-z">from A to Z</option>
+          <option value="z-a">from Z to A</option>
+        </select>
 
-      <div>Weight Ordering</div>
-      <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
-        <option value="weight" disabled selected></option>
-        <option value="min">From lighter to heavier</option>
-        <option value="max">From heavier to lighter</option>
-      </select>
-      <div>Average weight</div>
-      <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
-        <option value="aver" disabled selected></option>
-        <option value="ave">Order from lighter to heavier</option>
-        <option value="ave-max">Order from heavier to lighter</option>
-      </select>
-
-
-
-      <Pagination
-      dogsPerPage= {dogsPerPage}
-      dogs= {dogs.length}
-      pagination= {pagination} />
+        <div>Weight Ordering</div>
+        <select defaultValue="weight" onChange={event =>{handleOrder2(event)}}>
+          <option value="weight" disabled selected></option>
+          <option value="min">From lighter to heavier</option>
+          <option value="max">From heavier to lighter</option>
+        </select>
+        <div>Average weight</div>
+        <select defaultValue="aver" onChange={event =>{handleOrder2(event)}}>
+          <option value="aver" disabled selected></option>
+          <option value="ave">Order from lighter to heavier</option>
+          <option value="ave-max">Order from heavier to lighter</option>
+        </select>
+      </div>
 
 
+        <Pagination
+        dogsPerPage= {dogsPerPage}
+        dogs= {dogs.length}
+        pagination= {pagination} />
+
+      <div className={style.container}>
       {
         currentDogs?.map(dog=> {
           return (
@@ -141,7 +143,8 @@ const AllDogs = () => {
           />
           )
         })
-      }    
+      }
+      </div>    
     </div>
   )
 }

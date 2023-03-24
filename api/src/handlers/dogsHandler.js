@@ -7,12 +7,12 @@ const { getBreeds, getBreedsByName, getBreedById, createNewDog }= require("../co
 const getBreedsHandler= async (req, res)=> {
     const {name} = req.query;
     try {
-        if(!name){
-            let result= await getBreeds();
+        if(name){
+            let result= await getBreedsByName(name);
             return res.status(200).json(result)
         }
         else{
-            let result= await getBreedsByName(name);
+            let result= await getBreeds();
             return res.status(200).json(result)
         }         
     } catch (error) {

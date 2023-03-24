@@ -4,6 +4,7 @@ import SearchBar from './searchBar/Search';
 import { getAllBreeds } from "../../redux/actions/index"
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
+import style from "./home.module.css"
 
 const Home = () => {
   const [dog, setDog]= useState("");
@@ -16,9 +17,9 @@ const Home = () => {
   
   return (
     <div>
-      <h1>Dogs...Who can´t love them!</h1>
+      <h1 className={style.title}>Dogs...Who can´t love them!</h1>
       <SearchBar />
-      <button onClick={(event)=> handleClick(event)}>Get all dogs back</button>
+      <button className={style.refButton} onClick={(event)=> handleClick(event)}>Get all dogs back</button>
       <AllDogs/>
     </div>
   )

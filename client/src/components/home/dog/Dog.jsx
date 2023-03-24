@@ -1,16 +1,21 @@
-import React from 'react'
-import { Link } from "react-router-dom"
+import React from 'react';
+import { Link } from "react-router-dom";
+import style from "./dog.module.css";
 
 const Dog = ({image, name, temperament, weightMin, weightMax, averageWeight, id}) => {
   return (
-    <div>
+    <div className={style.card}>
       <Link to= {`/detail/${id}`}>
-        <img src={image} alt={name} width='200px' height='200px'/>
+        <img className={style.photo} src={image} alt={name} width='200px' height='200px'/>
       </Link>
-      <h2>{name}</h2>
-      <h3>Temperament: {temperament}</h3>
-      <h3>Min weight: {weightMin} - Max weight: {weightMax}</h3>
-      <h3>Average weight: {averageWeight}</h3>
+      <h3>{name}</h3>
+      <h4>Temperament:</h4>{temperament}
+      <br />
+      <h4>Min weight: </h4> {weightMin}
+      <br/>
+      <h4>Max weight: </h4> {weightMax}
+      <br />
+      <h4>Average weight: </h4> {averageWeight}
     </div>
   )
 }

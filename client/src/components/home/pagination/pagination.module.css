@@ -1,0 +1,28 @@
+.paginado {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    align-content: stretch;
+    margin-right: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .number {
+    background-color: yellow;
+    color: black;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    border: 2px solid black;
+    cursor: pointer;
+  }
+  .number:focus {
+    background: black;
+    color: #fff;
+  }

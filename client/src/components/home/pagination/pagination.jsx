@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./pagination.module.css"
 
 const Pagination = ({dogsPerPage, dogs, pagination}) => {
 
@@ -10,18 +11,17 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
 
   return (
     <nav>
-        <ul>
+        <ul className={style.pagination}>
             {
             pages && pages.map(num => (
-                <li key={num}>
+                <button className={style.number} key={num}>
                     <a onClick={() => pagination(num)}>{num}</a>
 
-                </li>
-            ))
-            }
+                </button>
+            ))}
         </ul>
     </nav>
-  )
+  );
 }
 
 export default Pagination;
