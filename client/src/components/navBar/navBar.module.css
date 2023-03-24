@@ -1,0 +1,78 @@
+.mainContainer{
+    background: rgb(250, 246, 26);
+    box-shadow: 0 1px 10px 0 rgba(10, 20, 38, 0.523);
+    backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px );
+    height: 50px;
+    display: flex;
+    justify-content :space-between;
+    align-items: center;
+}
+
+.home {
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.884);
+    border-radius: 4px;
+    color: rgb(9, 9, 9);
+    font-family: "Marker Felt", fantasy;
+    font-weight: 200px;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;    
+    cursor: pointer;
+}
+
+.home:hover {
+    background: black;
+    transition: 1s;
+    color: black;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.createDogs{
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.884);
+    border-radius: 4px;
+    color: rgb(9, 9, 9);
+    font-family: "Marker Felt", fantasy;
+    font-weight: 200px;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;    
+    cursor: pointer;
+
+}
+
+.createDogs:hover {
+    background: black;
+    transition: 1s;
+    color: black;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.jwthf{
+    width: 150px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.884);
+    border-radius: 4px;
+    color: rgb(9, 9, 9);
+    font-family: "Marker Felt", fantasy;
+    font-weight: 200px;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;    
+    cursor: pointer;
+
+}
+
+.jwthf:hover {
+    background: black;
+    transition: 1s;
+    color: black;
+    border-radius: 4px;
+    color: #fff;
+}

@@ -12,3 +12,38 @@
 
 }
 
+.letters{
+    align-items: center;
+    align-content: stretch;
+    height: 100vh;
+    font-family: "Impact", fantasy;
+    font-size: 30px;
+    color: #261f0f;
+    position: fixed;
+    top: 30%;
+    left: 15%;
+  }
+  
+  #button button{
+      border: 1px solid;
+      border-radius: 4%;
+      background: #684d02;
+      border-color: #261f0f;
+      font-size: 25px;
+      font-family: "Marker Felt", fantasy;
+      font-weight: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 80px;
+      color: #e4c98b;
+      position: fixed;
+      top: 55%;
+      left: 25%;
+    }
+  
+    #button button:hover {
+      transform: scale(1.1);
+      color: rgba(255, 255, 255, 0.938) ;
+    }

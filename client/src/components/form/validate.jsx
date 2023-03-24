@@ -1,6 +1,6 @@
 const validate =({name, height, image, life_span, weightMax, weightMin, temperaments})=>{
     let errors= {};
-    let regexImg= /(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png)/;
+    let regexImg= /(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png|pnj)/;
     let regexName= /([0-9])+/;
 
     if(!name.trim()) {

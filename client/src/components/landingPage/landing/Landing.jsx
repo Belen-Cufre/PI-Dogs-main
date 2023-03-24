@@ -5,10 +5,14 @@ import styles from "./Landing.css";
 const Landing= () => {
     return (
         <div className={styles.Landing}>
-            <div>Wellcome to Dog's World</div>
-            <Link to="/home">
+            <div className="letters">
+            <h1>Wellcome to Dog's World</h1>
+            </div>
+            <div id="button">
+             <Link to="/home">
                 <button>Enter</button>
-            </Link>
+             </Link>
+            </div>
         </div>
     );
 }
