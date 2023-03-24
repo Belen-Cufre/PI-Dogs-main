@@ -21,8 +21,10 @@ const handleSearch= (event) =>{
 
    return (
       <div className={style.SearchContainer}>
-         <input className={style.bar} type='search' value={dog} onChange={handleChange} placeholder='Search for a dog 🔎'/>
-        <button className={style.search} type="submit" onClick={(event)=> handleSearch (event)}>Search</button>
+         <div className={style.daddydiv}>
+            <input className={style.bar} type='search' value={dog} onChange={handleChange} placeholder='Search for a dog 🔎'/>
+            <button className={style.search} type="submit" onClick={(event)=> handleSearch (event)}>Search</button>
+         </div>
       </div>
    );
 }

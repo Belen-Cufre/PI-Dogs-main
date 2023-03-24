@@ -10,8 +10,8 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
     }
 
   return (
-    <nav>
-        <ul className={style.pagination}>
+    <nav className={style.numbersInPagi}>
+        <ul className={style.paginado}>
             {
             pages && pages.map(num => (
                 <button className={style.number} key={num}>

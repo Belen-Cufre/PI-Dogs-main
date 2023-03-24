@@ -94,15 +94,18 @@ const reducer = (state = initialState, action) => {
         }
 
         case FILTER_BY_TEMPER:
-            let dogsWithChosenTemps= action.payload  === "all" ? state.allDogs :
-            state.allDogs?.filter(dog=> {
-                if(!dog.temperament) return undefined;
-                return dog.temperament.split(", ").includes(action.payload)
-            })
+            let dogsWithChosenTemps =
+                action.payload === "all"
+                ? state.allDogs
+                : state.allDogs?.filter((dog) => {
+                if (!dog.temperament) return undefined;
+                else return dog.temperament.split(", ").includes(action.payload);
+                });
             return {
                 ...state,
-                dogs: dogsWithChosenTemps
-            }
+                dogs: dogsWithChosenTemps,
+        };
+
         
         case GET_DOGS_BY_NAME:
             return {

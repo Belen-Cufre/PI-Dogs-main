@@ -62,11 +62,11 @@ const getBreedsFromApi= async()=> {
 
 const getBreedsFromDb= async()=> {
     let dbData= await Dog.findAll({
-    include: {
+    include: [{
         model: Temperament,
         attributes: ["name"],
-        through:{attributes: [],},
-       },
+        through:{attributes: []},
+       }],
     });
 
     let fromDb= dbData.map((inst)=>{
@@ -79,11 +79,13 @@ const getBreedsFromDb= async()=> {
         name: inst.name,
         life_span: inst.life_span,
         image: inst.image,
-        temperament: inst.temperament?inst.temperament.map(el=> el.name).join(", "):["Happy"],
+        temperament: inst.Temperaments? inst.Temperaments.map (el=> el.name).join(", "):"Happy",
         from_DB: true,
         }
     });
+    console.log(dbData)
     return fromDb;
+    
 };
 
 //Unify in one function what comes from the api and what comes from db
@@ -139,7 +141,7 @@ const getBreedById = async (id, origin) => {
 					image: dogDB.image,
 					temperament: dogDB.temperament
 						? dogDB.temperament.map((el) => el.name).join(', ')
-						: ['Happy'],
+						: 'Happy',
 					from_DB: true,
 				};
 			}

@@ -28,11 +28,17 @@ const AllDogs = () => {
   
   const pagination= (page) => {setCurrentPage(page)}
 
-  const temperaments = useSelector((state) => state.temperaments).sort(
+  const temperaments = useSelector(state => [...state.temperaments].sort(
     function (a, b) {
-        if (a < b) return -1;
-        else return 1;
-    })
+      if (a < b) return -1;
+      else return 1;
+    }))
+
+  // const temperaments = useSelector((state) => state.temperaments).sort(
+  //   function (a, b) {
+  //       if (a < b) return -1;
+  //       else return 1;
+  //   })
 
 
   const handleOrder1= (event) => {

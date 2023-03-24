@@ -33,13 +33,13 @@ const Form = () => {
   }
 
   const handleTemperamentChoices = (event)=> {
-    let { value }= event.target;
-    if (inputs.temperaments.includes(value)) {
-      return alert ("Temperaments can not be repeated")
-    }
+    // let { value }= event.target;
+    // if (inputs.temperaments.includes(value)) {
+    //   return alert ("Temperaments can not be repeated")
+    // }
     setInputs({
       ...inputs,
-      temperaments: [...inputs.temperaments, value]
+      temperaments: [...inputs.temperaments, event.target.value]
     })
   }
 
@@ -53,6 +53,7 @@ const Form = () => {
   const handleSubmit= (event)=> {
     event.preventDefault();
     dispatch(createNewDog(inputs))
+    console.log(inputs)
     alert ("Dog successfully added")
     setInputs({
       name: "",
