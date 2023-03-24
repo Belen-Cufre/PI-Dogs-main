@@ -33,13 +33,13 @@ const Form = () => {
   }
 
   const handleTemperamentChoices = (event)=> {
-    // let { value }= event.target;
-    // if (inputs.temperaments.includes(value)) {
-    //   return alert ("Temperaments can not be repeated")
-    // }
+    let { value }= event.target;
+    if (inputs.temperaments.includes(value)) {
+      return alert ("Temperaments can not be repeated")
+    }
     setInputs({
       ...inputs,
-      temperaments: [...inputs.temperaments, event.target.value]
+      temperaments: [...inputs.temperaments, value]
     })
   }
 
