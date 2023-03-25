@@ -1,4 +1,5 @@
 .refButton {
+    justify-content: end;
     width: auto;
     height: 40px;
     background: black;
@@ -11,6 +12,12 @@
     margin: 5px;  
     cursor: pointer;
     padding: 7px;
+  }
+
+  .divGetAllB{
+    display: flex;
+    justify-content: end;
+
   }
   
   .refButton:hover {
@@ -27,3 +34,4 @@
     color: #fff;
     font-size: 40px;
   }
+

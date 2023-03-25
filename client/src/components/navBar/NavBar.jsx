@@ -8,13 +8,10 @@ const Nav= ()=>{
                 <button className={style.home}>Home</button>
             </Link>
 
-            <hr />
-
             <Link to="/createDogs">
                 <button className={style.createDogs}>Create dogs</button>
             </Link>
 
-            <hr />
 
             <Link to="/funnyDogs">
                 <button className={style.jwthf}>Enjoy them!</button>

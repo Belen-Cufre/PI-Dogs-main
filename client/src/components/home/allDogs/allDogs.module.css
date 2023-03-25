@@ -1,12 +1,3 @@
-body {
-    background-image: url("https://images.unsplash.com/photo-1589496933738-f5c27bc146e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3Jhc3N8ZW58MHx8MHx8&w=1000&q=80");
-    background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100%;
-    font-family: 'Times New Roman', Times;
-}
-
 .container{
     display: flex;
     justify-content: center;
@@ -17,10 +8,113 @@ body {
 }
 
 .filters {
-    background-color: #706957;
-    box-shadow: 0px 0px 15px 0px #1f1d36;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    padding: 10px 30%;
+    margin-top: 60px;
+    margin-bottom: 30px;
 }
+
+.filterByOrigin {
+    display: flex;
+    flex-direction: column;
+}
+.filterByOrigin div{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 20px 5px 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.orderByOrigin select{
+    /* width: 150px; */
+}
+
+.filterByTemperament {
+    display: flex;
+    flex-direction: column;
+}
+.filterByTemperament div{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 20px 5px 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.filterByTemperament select{
+    /* width: 150px; */
+}
+
+.orderByName {
+    display: flex;
+    flex-direction: column;
+}
+.orderByName div{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 20px 5px 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.orderByName select{
+    /* width: 150px; */
+}
+
+.orderByWeight {
+    display: flex;
+    flex-direction: column;
+}
+.orderByWeight div{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 20px 20px 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.orderByWeight select{
+    /* width: 150px; */
+}
+
+.orderByAverage {
+    display: flex;
+    flex-direction: column;
+}
+.orderByAverage div{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 20px 20px 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.orderByAverage select{
+    /* width: 150px; */
+}
+
+.pepitoJuarez {
+    color: #fff;
+    font-size: larger;
+}
+.pepitoJuarez img{
+    width: 15%;
+    height: 15%;
+}
+

@@ -74,7 +74,7 @@ const getBreedsFromDb= async()=> {
         id: inst.id,
         weightMax: inst.weightMax,
         weightMin: inst.weightMin,
-        averageWeight: (inst.weightMax + inst.weightMin)/2,
+        averageWeight: (Number(inst.weightMax) + Number(inst.weightMin))/2,
         height: inst.height,
         name: inst.name,
         life_span: inst.life_span,
@@ -122,11 +122,11 @@ const getBreedById = async (id, origin) => {
 				where: {
 					id: id,
 				},
-				include: {
-					model: Temperament,
-					attributes: ['name'],
-					through: { attributes: [] },
-				},
+                include: [{
+                    model: Temperament,
+                    attributes: ["name"],
+                    through:{attributes: []},
+                   }],
 			});
 
 			if (dogDB) {
@@ -134,13 +134,13 @@ const getBreedById = async (id, origin) => {
 					id: dogDB.id,
 					weightMax: dogDB.weightMax,
 					weightMin: dogDB.weightMin,
-                    averageWeight: (dogDB.weightMax + dogDB.weightMin) /2,
+                    averageWeight: (Number(dogDB.weightMax) + Number(dogDB.weightMin)) /2,
 					height: dogDB.height,
 					name: dogDB.name,
 					life_span: dogDB.life_span,
 					image: dogDB.image,
-					temperament: dogDB.temperament
-						? dogDB.temperament.map((el) => el.name).join(', ')
+					temperament: dogDB.Temperaments
+						? dogDB.Temperaments.map((el) => el.name).join(', ')
 						: 'Happy',
 					from_DB: true,
 				};

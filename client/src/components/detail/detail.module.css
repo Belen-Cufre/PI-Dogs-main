@@ -1,0 +1,73 @@
+.mainCont {
+    display: flex;
+    flex-direction: column;
+}
+.swiperwrapper {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+.swiperSlide{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* background-color: #000; */
+}
+.swiperSlide img{
+    position: relative;
+    display: block;
+    /* margin-top: 50px; */
+    width: auto;
+    height: 100vh;
+}
+.swiperDescription{
+    position: absolute;
+    bottom: 0%;
+    isolation: isolate;
+    padding: 50px 25px 25px;
+    color: #fff;
+    width: 100%;
+}
+.swiperDescription::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.8) 50%);
+}
+
+.swiperDescription h2{
+    font-size: 46px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.swiperDescription p{
+    font-size: 25px;
+}
+
+.homeBut {
+    display: flex;
+    height: 50px;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: #fff;
+    font-family: "Marker Felt", fantasy;
+    font-size: 15px;
+    margin-top: 7px;
+    width: 80px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .homeBut:hover {
+    background: rgba(255, 255, 255, 0.884);
+    transition: 1s;
+    color: rgb(9, 9, 9);
+    border-radius: 4px;    
+  }

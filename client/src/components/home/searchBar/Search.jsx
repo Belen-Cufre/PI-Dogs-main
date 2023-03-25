@@ -1,30 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getDogsByName } from "../../../redux/actions/index"
+import { getName } from "../../../redux/actions/index"
 import style from "./searchBar.module.css"
 
-const SearchBar= ()=> {
+const SearchBar= ({setCurrentPage})=> {
 const [dog, setDog]= useState("");
+
 const dispatch= useDispatch();
 
 const handleChange= (event)=> {
-    event.preventDefault();
-    setDog(event.target.value)
+   dispatch(getName(event))
+   setCurrentPage(1)
 }
-
-const handleSearch= (event) =>{
-    event.preventDefault();
-      dispatch(getDogsByName(dog));
-      setDog("");
-    }
 
    return (
       <div className={style.SearchContainer}>
-         <div className={style.daddydiv}>
-            <input className={style.bar} type='search' value={dog} onChange={handleChange} placeholder='Search for a dog 🔎'/>
-            <button className={style.search} type="submit" onClick={(event)=> handleSearch (event)}>Search</button>
-         </div>
+            <input className={style.bar} type='text' value={dog} onChange={(event)=> {setDog(event.target.value); handleChange(event.target.value)}} placeholder='Search for a dog 🔎'/>
+            <button className={style.search} type="submit">Search</button>
       </div>
    );
 }

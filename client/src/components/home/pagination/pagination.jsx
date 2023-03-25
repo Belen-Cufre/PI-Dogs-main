@@ -5,8 +5,8 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
 
     const pages = [];
 
-    for (let i=0; i <= Math.floor(dogs/dogsPerPage); i++){
-        pages.push(i+1)
+    for (let i=1; i <= Math.floor(dogs/dogsPerPage); i++){
+        pages.push(i)
     }
 
   return (

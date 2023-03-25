@@ -7,7 +7,7 @@
     align-items: baseline;
     align-content: stretch;
     margin-right: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     gap: 10px;
   }
   
@@ -32,5 +32,5 @@
     display: flex;
     justify-content: center;
     margin-top: 35px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
   }

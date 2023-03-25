@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { createNewDog, getAllTemperaments } from "../../redux/actions";
 import validate from "./validate"
 import style from "./form.module.css"
+import NavBar from "../navBar/NavBar"
 
 const Form = () => {
 
@@ -72,6 +73,7 @@ const Form = () => {
 
   return(
     <div>
+      <NavBar />
       <h1 id={style.title}>Complete the dog´s list</h1>
       <h2 className={style.title2}>A real dog API can´t have our dogs missing ❤</h2>
       <h3 className={style.title3}>Let´s add our dogs to complete this API</h3>
@@ -84,7 +86,7 @@ const Form = () => {
             type="text" 
             name="name"
             value={inputs.name}
-            placeholder={"Choose a name"}
+            placeholder={"For example: Boby Alvarez"}
             onChange={(event)=>handleInputs(event)}/>
             {error.name && <strong>{error.name}</strong>}
           </div>
@@ -97,7 +99,7 @@ const Form = () => {
             type="text" 
             name="image"
             value={inputs.image}
-            placeholder= {"Add an image"}
+            placeholder= {"For example: https://mydog.jpg "}
             onChange={(event)=>handleInputs(event)}/>
             {error.image && <strong>{error.image}</strong>}
           </div>
@@ -105,10 +107,10 @@ const Form = () => {
           <br />
 
           <div>
-            <label>Weight:</label>
+            <label>Weight</label>
             <br />
             <br />
-            <label>Min: </label> 
+            <label>Min (kg): </label> 
             <input 
             type="text" 
             name="weightMin"
@@ -120,7 +122,7 @@ const Form = () => {
 
             <br />
 
-            <label>Max: </label>
+            <label>Max (kg): </label>
             <input 
             type="text" 
             name="weightMax"
@@ -135,15 +137,14 @@ const Form = () => {
           <br />
 
           <div>
-            <label>Height: 
+            <label>Height (cm): 
               <input 
               type="text" 
               name="height"
               value={inputs.height}
-              placeholder= {"For example: 55 - 67"}
+              placeholder= {"For example: 55 - 67 centimeters"}
               onChange={(event)=>handleInputs(event)}/>
               {error.height && <strong>{error.height}</strong>}
-              (in centimeters)
             </label>
           </div>
 
@@ -163,27 +164,29 @@ const Form = () => {
 
           <br />
 
-          <div className={style.temperaments}>
-            <label>Temperaments: </label>
+          <label>Temperaments: </label>
+            <div className={style.temperaments}>
               <select value={temperaments} onChange={(event)=>handleTemperamentChoices(event)}>
-              <option value="all"></option>
+              <option className={style.opciones} value="all"></option>
               {temperaments.map((temp)=> {
                 return(
-                <option value={temp} key={temp}>
+                <option className={style.opciones} value={temp} key={temp}>
                   {temp}
                 </option>
                 );
               })}
               </select>
-            <h5>My dog is...</h5>
-            <ul><li>{inputs.temperaments.map(temp => temp + " ,")}</li></ul>
+            <h4>My dog is...</h4>
+            <ul className={style.lista}><div>{inputs.temperaments.map(temp => temp + ", ")}</div></ul>
             <button 
             type="submit"
             onClick={(event)=>handleSubmit(event)}
-            className={style.button}
-            disabled= {
+            // disabled= {
+            //   error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
+            // }  
+            className={style.button} disabled= {
               error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
-            }  
+            }
             >Add my dog</button>
           </div>
         </div>
@@ -191,11 +194,16 @@ const Form = () => {
 
       {inputs.temperaments.map(temp =>
         <div>
-          <p>{temp}</p>
-          <button 
-          onClick={()=>{handleDelete(temp)}}>X</button>
+          <div className={style.toDelete}>
+            <h4>{temp} </h4>
+          </div>
+          <div className={style.deleteBut}>
+            <button
+            onClick={()=>{handleDelete(temp)}}>X</button>
+          </div>
         </div>
         )}
+
 
     </div>
   )
