@@ -12,10 +12,10 @@ const Nav= ()=>{
                 <button className={style.createDogs}>Create dogs</button>
             </Link>
 
-
+{/* 
             <Link to="/funnyDogs">
                 <button className={style.jwthf}>Enjoy them!</button>
-            </Link>
+            </Link> */}
 
         </nav>
     )

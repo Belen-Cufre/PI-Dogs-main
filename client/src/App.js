@@ -19,7 +19,7 @@ function App() {
         <Route exact path= "/home" element={<Home/>} />
         <Route exact path= "/detail/:id" element={<Detail/>} />
         <Route exact path= "/createDogs" element={<Form/>} />
-        <Route exact path= "/funnyDogs" element={<Jwthf/>}/>
+        {/* <Route exact path= "/funnyDogs" element={<Jwthf/>}/> */}
       </Routes>
     // </div>
   );

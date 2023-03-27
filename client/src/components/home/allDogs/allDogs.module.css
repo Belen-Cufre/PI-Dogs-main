@@ -29,10 +29,6 @@
     border-radius: 14px;
 }
 
-.orderByOrigin select{
-    /* width: 150px; */
-}
-
 .filterByTemperament {
     display: flex;
     flex-direction: column;
@@ -46,10 +42,6 @@
     padding: 5px 20px 5px 20px;
     text-align: center;
     border-radius: 14px;
-}
-
-.filterByTemperament select{
-    /* width: 150px; */
 }
 
 .orderByName {
@@ -67,10 +59,6 @@
     border-radius: 14px;
 }
 
-.orderByName select{
-    /* width: 150px; */
-}
-
 .orderByWeight {
     display: flex;
     flex-direction: column;
@@ -84,10 +72,6 @@
     padding: 5px 20px 20px 20px;
     text-align: center;
     border-radius: 14px;
-}
-
-.orderByWeight select{
-    /* width: 150px; */
 }
 
 .orderByAverage {
@@ -105,10 +89,6 @@
     border-radius: 14px;
 }
 
-.orderByAverage select{
-    /* width: 150px; */
-}
-
 .pepitoJuarez {
     color: #fff;
     font-size: larger;
@@ -117,4 +97,32 @@
     width: 15%;
     height: 15%;
 }
+
+.refButton {
+    justify-content: end;
+    width: auto;
+    height: 40px;
+    background: black;
+    border-radius: 4px;
+    color: #fff;
+    font-family: "Marker Felt", fantasy;
+    font-weight: 100px;
+    font-size: 15px;
+    margin-top: 0;
+    margin: 5px;  
+    cursor: pointer;
+    padding: 7px;
+  }
+
+.divGetAllB{
+    display: flex;
+    justify-content: end;
+  }
+  
+  .refButton:hover {
+    background: rgba(255, 255, 255, 0.884);
+    transition: 1s;
+    color: rgb(9, 9, 9);
+    border-radius: 4px; 
+  }
 

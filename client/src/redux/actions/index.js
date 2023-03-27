@@ -1,6 +1,8 @@
 import axios from "axios";
 import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, GET_ALL_TEMPS, FILTER_BY_TEMPER,
-GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG, RESET_DETAIL, GET_NAME } from "../action_types/action_types";
+GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG, RESET_DETAIL, GET_NAME, SET_CURRENT_PAGE } from "../action_types/action_types";
+
+//These functions are called by my components according to the requested info
 
 export const getAllBreeds = ()=> {
     return async function(dispatch){
@@ -94,5 +96,12 @@ export const createNewDog= (payload)=> {
 export const resetDetail= ()=> {
     return {
         type: RESET_DETAIL
+    }
+}
+
+export const setCurrentPage= (payload)=> {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload
     }
 }

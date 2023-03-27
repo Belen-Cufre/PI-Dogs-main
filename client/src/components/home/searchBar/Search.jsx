@@ -1,17 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getName } from "../../../redux/actions/index"
+import { getName, setCurrentPage } from "../../../redux/actions/index"
 import style from "./searchBar.module.css"
 
-const SearchBar= ({setCurrentPage})=> {
+const SearchBar= ()=> {
 const [dog, setDog]= useState("");
 
 const dispatch= useDispatch();
 
 const handleChange= (event)=> {
    dispatch(getName(event))
-   setCurrentPage(1)
+   dispatch(setCurrentPage(1))
 }
 
    return (

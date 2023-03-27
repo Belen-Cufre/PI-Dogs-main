@@ -7,8 +7,8 @@ const {Dog}= require ("../db");
 const {Temperament}= require ("../db");
 const {API_KEY} = process.env
 
-//This function will bring all the info (.data) from the Api which I need to have. Same info criteria I used to create dogs
 
+//This function will bring all the info (.data) from the Api which I need to have. Same info criteria I used to create dogs
 const getBreedsFromApi= async()=> {
     let apiData= await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
     
@@ -28,10 +28,14 @@ const getBreedsFromApi= async()=> {
                 weightMin = weightMax;
                 averageWeight= averageWeight / 2;
 
+            } else if (weightMin.length === 2) {
+                wweightMax;
+                averageWeight= averageWeight / 2;
+
             } else {
                 if (inst.name === "Smooth Fox Terrier") {
-                    weightMin = 6;
-                    weightMax = 9;
+                    weightMin = 8;
+                    weightMax = 8;
                     averageWeight= ((weightMax) + (weightMin)) / 2;
 
                 } else {
@@ -41,7 +45,6 @@ const getBreedsFromApi= async()=> {
 
                 }
             }
-            // console.log(inst.weight.metric.length<=3&&inst.id)
 
         return {
         id: inst.id,
@@ -58,8 +61,8 @@ const getBreedsFromApi= async()=> {
     return fromApi;
 }
 
-//This function will bring all all de data from the Db;
 
+//This function will bring all the data from the Db;
 const getBreedsFromDb= async()=> {
     let dbData= await Dog.findAll({
     include: [{
@@ -83,13 +86,12 @@ const getBreedsFromDb= async()=> {
         from_DB: true,
         }
     });
-    console.log(dbData)
     return fromDb;
     
 };
 
-//Unify in one function what comes from the api and what comes from db
 
+//Unify in one function what comes from the api and what comes from db
 const getBreeds= async() => {
     let breedsApi= await getBreedsFromApi();
     let breedsDb= await getBreedsFromDb();
@@ -97,8 +99,8 @@ const getBreeds= async() => {
     return breeds;
 }
 
-//This function will bring only the info related with the requested name. If the name does not exist, it will throw an error
 
+//This function will bring only the info related with the requested name. If the name does not exist, it will throw an error
 const getBreedsByName= async (name)=>{
     
     let name2= name.toLowerCase();
@@ -113,8 +115,8 @@ const getBreedsByName= async (name)=>{
     }
 };
 
-//This function will bring only the info belonging to the requested id. If the id does not exist, it will throw an error
 
+//This function will bring only the info belonging to the requested id. If the id does not exist, it will throw an error
 const getBreedById = async (id, origin) => {
 	try {
 		if (origin === 'db') {
@@ -168,8 +170,8 @@ const getBreedById = async (id, origin) => {
 					weightMin = weightMax;
 					averageWeight = weightMax;
 				} else if (inst.name === 'Smooth Fox Terrier') {
-					weightMin = 6;
-					weightMax = 9;
+					weightMin = 8;
+					weightMax = 8;
 					averageWeight = (weightMax + weightMin) / 2;
 				} else {
 					weightMin = 20;
@@ -199,7 +201,6 @@ const getBreedById = async (id, origin) => {
 
 
 //This function will create a new dog in my Db with all the requested info.
-
 const createNewDog= async ( weightMin, weightMax, height, name, life_span, image, temperament, from_DB)=> {
     if (!weightMin || !weightMax || !height || !name || !life_span || !image || !temperament){
     throw new Error("Missing information. Please, complete all the required data.")

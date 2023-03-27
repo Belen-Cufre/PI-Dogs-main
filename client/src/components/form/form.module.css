@@ -1,27 +1,26 @@
 .Formulario{
-    background-color: transparent;
-    backdrop-filter: blur(5px);
+    background-image: url("https://wallpaperset.com/w/full/8/a/2/289454.jpg");
+    background-position: left;
+    background-size: 120%;
     display: flex;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
     border: orange solid 1px;
-    color: white;
+    color: black;
     width: auto;
     border-radius: 20px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
     margin-top: 40px;
     height: 900px;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 20px 100px;
     font-family: 'Times New Roman', Times;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: bold;
 }
 .inputs {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: nowrap; */
-    /* justify-content: flex-start; */
-    /* align-items: flex-start; */
     align-content: stretch;
     width: 500px;
     height: 20px;
@@ -34,7 +33,8 @@
 
 strong {
     font-size: large;
-    color: orange;
+    color: red;
+    background-color: black;
     font-style: italic;
     /* font-weight: 100; */
 }
@@ -69,6 +69,7 @@ input {
     border-radius: 8px;
     border: none;
     margin: 10px 10px 0px 10px;
+    padding: 15px;
 }
 
 .button{
@@ -145,22 +146,38 @@ input {
     align-items: center;
 }
 
-.toDelete {
-    justify-content: center;
+
+.toDeleteContainer {
+    display: flex;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: left;
     align-items: center;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 10px;
+}
+
+.toDelete {
     display: flex;
     background-color: #e0de34;
     border-radius: 4px;
     margin-top: 1%;
-    margin-left: 40px;
+    margin-left: 90px;
     margin-right: 40px;
-    width: auto;
+    width: 120px;
+    padding: 5px;
+    font-weight: bold;
+    justify-content: space-evenly;
 }
 
-.deleteBut {
-justify-content: right;
-background-color: red;
-width: auto;
-margin-left: 40px;
-margin-right: 40px;
+.toDelete button{
+    padding: 2px;
+}
+
+.toDelete button:hover{
+    transition: 0.3s;
+    background-color: red;
+    color: white;
 }

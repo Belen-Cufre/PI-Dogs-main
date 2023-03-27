@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import style from "./dog.module.css";
 
+//Dumb component
 const Dog = ({image, name, temperament, weightMin, weightMax, averageWeight, id}) => {
   return (
     <div className={style.cardContainer}>

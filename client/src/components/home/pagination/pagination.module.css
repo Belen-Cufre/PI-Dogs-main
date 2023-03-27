@@ -34,3 +34,8 @@
     margin-top: 35px;
     margin-bottom: 70px;
   }
+
+  .active {
+    background: black;
+    color: #fff;
+  }

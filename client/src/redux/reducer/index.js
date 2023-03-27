@@ -1,4 +1,4 @@
-import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG, RESET_DETAIL, GET_NAME} from "../action_types/action_types";
+import { FILTER_BY_ORIGIN, GET_ALL_BREEDS, ORDER_BY_NAME, ORDER_BY_WEIGHT, FILTER_BY_TEMPER, GET_ALL_TEMPS, GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG, RESET_DETAIL, GET_NAME, SET_CURRENT_PAGE} from "../action_types/action_types";
 
 //here I create my reducer which will handle my global state
 
@@ -7,6 +7,7 @@ const initialState = {
     dogDetail: {},
     temperaments: [],
     allDogs: [], //this is a copy of all dogs which endures
+    currentPage: 1,
 }
 
 const reducer = (state = initialState, action) => {
@@ -86,7 +87,6 @@ const reducer = (state = initialState, action) => {
     
 
         case FILTER_BY_ORIGIN:
-            // const allDogs = state.allDogs;
             const filteredOrigin= action.payload === "from_DB" ? state.allDogs.filter( inst => inst.from_DB) : state.allDogs.filter(inst=> !inst.from_DB);
             return {
                 ...state,
@@ -137,6 +137,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dogDetail: {}
             }
+
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.payload
+            }
+        }
             
         default:
             return {

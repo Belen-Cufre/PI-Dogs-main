@@ -1,5 +1,5 @@
-//these handlers have to do the get and posts of my dogs.
-//for that, they need to have internal logics which I created in another folder of controllers. I import the controllers which control the logics of these handlers
+// these handlers have to do the get and posts of my dogs.
+// for that, they need to have internal logics which I created in another folder of controllers. I import the controllers which control the logics of these handlers
 
 const { getBreeds, getBreedsByName, getBreedById, createNewDog }= require("../controllers/dogsController")
 
@@ -7,12 +7,12 @@ const { getBreeds, getBreedsByName, getBreedById, createNewDog }= require("../co
 const getBreedsHandler= async (req, res)=> {
     const {name} = req.query;
     try {
-        if(name){
-            let result= await getBreedsByName(name);
+        if(!name){
+            let result= await getBreeds();
             return res.status(200).json(result)
         }
         else{
-            let result= await getBreeds();
+            let result= await getBreedsByName(name);
             return res.status(200).json(result)
         }         
     } catch (error) {

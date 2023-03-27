@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createNewDog, getAllTemperaments } from "../../redux/actions";
 import validate from "./validate"
@@ -7,25 +7,25 @@ import NavBar from "../navBar/NavBar"
 
 const Form = () => {
 
-  const dispatch = useDispatch();
-  const temperaments= useSelector((state)=> state.temperaments) //global state
+  const dispatch = useDispatch(); //this component will dispatch an action
+  const temperaments = useSelector((state) => state.temperaments) //global state
 
-  const [inputs, setInputs]= useState({ //local state
-      name: "",
-			height: "",
-			life_span: "",
-			image: "",
-			weightMin: "0",
-			weightMax: "0",
-      temperaments: [],
+  const [inputs, setInputs] = useState({ //local state
+    name: "",
+    height: "",
+    life_span: "",
+    image: "",
+    weightMin: "0",
+    weightMax: "0",
+    temperaments: [],
   })
 
-  const [error, setErrors] = useState({})
+  const [error, setErrors] = useState({}) //local state to validate form
 
-  const handleInputs = (event)=> {
+  const handleInputs = (event) => {
     setInputs({
       ...inputs,
-      [event.target.name] : event.target.value
+      [event.target.name]: event.target.value
     })
     setErrors(validate({
       ...inputs,
@@ -33,10 +33,10 @@ const Form = () => {
     }))
   }
 
-  const handleTemperamentChoices = (event)=> {
-    let { value }= event.target;
+  const handleTemperamentChoices = (event) => { //This function checks that you cannot create a dog with a temmperament "happy, happy, happy"
+    let { value } = event.target;
     if (inputs.temperaments.includes(value)) {
-      return alert ("Temperaments can not be repeated")
+      return alert("Temperaments can not be repeated")
     }
     setInputs({
       ...inputs,
@@ -44,34 +44,34 @@ const Form = () => {
     })
   }
 
-  const handleDelete= (temp)=> {
+  const handleDelete = (temp) => { //This function allows you to delete a temperament you don´t want BEFORE creating the dog 
     setInputs({
       ...inputs,
-      temperaments: inputs.temperaments.filter( inst => inst !== temp)
+      temperaments: inputs.temperaments.filter(inst => inst !== temp)
     })
   }
 
-  const handleSubmit= (event)=> {
+  const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createNewDog(inputs))
     console.log(inputs)
-    alert ("Dog successfully added")
+    alert("Dog successfully added")
     setInputs({
       name: "",
-			height: "",
-			life_span: "",
-			image: "",
-			weightMin: "0",
-			weightMax: "0",
+      height: "",
+      life_span: "",
+      image: "",
+      weightMin: "0",
+      weightMax: "0",
       temperaments: [],
     })
   }
-  
-  useEffect(()=> {
+
+  useEffect(() => {
     dispatch(getAllTemperaments())
   }, []);
 
-  return(
+  return (
     <div>
       <NavBar />
       <h1 id={style.title}>Complete the dog´s list</h1>
@@ -82,12 +82,12 @@ const Form = () => {
         <div className={style.inputs}>
           <div>
             <label>Name: </label>
-            <input 
-            type="text" 
-            name="name"
-            value={inputs.name}
-            placeholder={"For example: Boby Alvarez"}
-            onChange={(event)=>handleInputs(event)}/>
+            <input
+              type="text"
+              name="name"
+              value={inputs.name}
+              placeholder={"For example: Boby Alvarez"}
+              onChange={(event) => handleInputs(event)} />
             {error.name && <strong>{error.name}</strong>}
           </div>
 
@@ -95,12 +95,12 @@ const Form = () => {
 
           <div>
             <label>Image: </label>
-            <input 
-            type="text" 
-            name="image"
-            value={inputs.image}
-            placeholder= {"For example: https://mydog.jpg "}
-            onChange={(event)=>handleInputs(event)}/>
+            <input
+              type="text"
+              name="image"
+              value={inputs.image}
+              placeholder={"For example: https://mydog.jpg "}
+              onChange={(event) => handleInputs(event)} />
             {error.image && <strong>{error.image}</strong>}
           </div>
 
@@ -110,26 +110,22 @@ const Form = () => {
             <label>Weight</label>
             <br />
             <br />
-            <label>Min (kg): </label> 
-            <input 
-            type="text" 
-            name="weightMin"
-            value={inputs.weightMin}
-            // min= "1"
-            // max= "100"
-            onChange={(event)=>handleInputs(event)}/>
+            <label>Min (kg): </label>
+            <input
+              type="text"
+              name="weightMin"
+              value={inputs.weightMin}
+              onChange={(event) => handleInputs(event)} />
             {error.weightMin && <strong>{error.weightMin}</strong>}
 
             <br />
 
             <label>Max (kg): </label>
-            <input 
-            type="text" 
-            name="weightMax"
-            value={inputs.weightMax}
-            // min= "1"
-            // max= "100"
-            onChange={(event)=>handleInputs(event)}/>
+            <input
+              type="text"
+              name="weightMax"
+              value={inputs.weightMax}
+              onChange={(event) => handleInputs(event)} />
             {error.weightMax && <strong>{error.weightMax}</strong>}
 
           </div>
@@ -137,13 +133,13 @@ const Form = () => {
           <br />
 
           <div>
-            <label>Height (cm): 
-              <input 
-              type="text" 
-              name="height"
-              value={inputs.height}
-              placeholder= {"For example: 55 - 67 centimeters"}
-              onChange={(event)=>handleInputs(event)}/>
+            <label>Height (cm):
+              <input
+                type="text"
+                name="height"
+                value={inputs.height}
+                placeholder={"For example: 55 - 67 centimeters"}
+                onChange={(event) => handleInputs(event)} />
               {error.height && <strong>{error.height}</strong>}
             </label>
           </div>
@@ -151,13 +147,13 @@ const Form = () => {
           <br />
 
           <div>
-            <label>Life expectancy: 
-              <input 
-              type="text" 
-              name="life_span"
-              value={inputs.life_span}
-              placeholder={"For example: 10 - 15 years"}
-              onChange={(event)=>handleInputs(event)}/>
+            <label>Life expectancy:
+              <input
+                type="text"
+                name="life_span"
+                value={inputs.life_span}
+                placeholder={"For example: 10 - 15 years"}
+                onChange={(event) => handleInputs(event)} />
               {error.life_span && <strong>{error.life_span}</strong>}
             </label>
           </div>
@@ -165,47 +161,40 @@ const Form = () => {
           <br />
 
           <label>Temperaments: </label>
-            <div className={style.temperaments}>
-              <select value={temperaments} onChange={(event)=>handleTemperamentChoices(event)}>
+          <div className={style.temperaments}>
+            <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
               <option className={style.opciones} value="all"></option>
-              {temperaments.map((temp)=> {
-                return(
-                <option className={style.opciones} value={temp} key={temp}>
-                  {temp}
-                </option>
+              {temperaments.map((temp) => {
+                return (
+                  <option className={style.opciones} value={temp} key={temp}>
+                    {temp}
+                  </option>
                 );
               })}
-              </select>
+            </select>
             <h4>My dog is...</h4>
             <ul className={style.lista}><div>{inputs.temperaments.map(temp => temp + ", ")}</div></ul>
-            <button 
-            type="submit"
-            onClick={(event)=>handleSubmit(event)}
-            // disabled= {
-            //   error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
-            // }  
-            className={style.button} disabled= {
-              error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
-            }
+            <button
+              type="submit"
+              onClick={(event) => handleSubmit(event)}
+              className={style.button} disabled={
+                error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
+              }
             >Add my dog</button>
           </div>
         </div>
       </form>
 
+      <div className={style.toDeleteContainer}>
       {inputs.temperaments.map(temp =>
-        <div>
           <div className={style.toDelete}>
-            <h4>{temp} </h4>
+          <p>{temp}</p>
+          <button onClick={() => { handleDelete(temp) }}>X</button>
           </div>
-          <div className={style.deleteBut}>
-            <button
-            onClick={()=>{handleDelete(temp)}}>X</button>
-          </div>
-        </div>
-        )}
+      )}
+      </div>
 
-
-    </div>
+  </div>
   )
 }
 

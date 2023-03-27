@@ -1,6 +1,6 @@
 const { Router } =  require ("express");
 
-//I create the "temperaments" router, whicha has all the req and res handlers and all the answers which are targeted to /temperaments route.
+//I create the "temperaments" router, which has all the req and res handlers and all the answers which are targeted to /temperaments route.
 //For that, I import the handler which handles the temperaments
 
 const {getAllTempHandlers} = require("../handlers/tempHandlers")

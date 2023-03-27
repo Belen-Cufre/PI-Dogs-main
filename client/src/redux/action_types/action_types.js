@@ -9,5 +9,7 @@ export const GET_DOG_DETAIL= "GET_DOG_DETAIL";
 export const CREATE_DOG= "CREATE_DOG";
 export const RESET_DETAIL= "RESET_DETAIL";
 export const GET_NAME= "GET_NAME";
+export const SET_CURRENT_PAGE= "SET_CURRENT_PAGE";
+
 
 

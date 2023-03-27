@@ -7,16 +7,16 @@ import style from "./detail.module.css"
 
 
 const Detail = () => {
-  let dispatch= useDispatch();
+  let dispatch= useDispatch(); //this component will dispatch actions
   let { id }= useParams();
-  const dogDetail= useSelector((state) => state.dogDetail);
+  const dogDetail= useSelector((state) => state.dogDetail); //global state
 
   useEffect(() => {
     dispatch(getDogDetail(id))
     return ()=> {
-      dispatch(resetDetail())
+      dispatch(resetDetail()) //this action avoids saving the las visited detail so that when you see a new dogDetail you don´t see the previously seen dog
     }
-  }, [])
+  }, [dispatch])
 
   return (
 

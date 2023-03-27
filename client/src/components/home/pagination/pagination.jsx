@@ -1,7 +1,10 @@
 import React from "react";
 import style from "./pagination.module.css"
+import { useSelector } from "react-redux";
 
 const Pagination = ({dogsPerPage, dogs, pagination}) => {
+
+    const currentPage=  useSelector(state=> state.currentPage);
 
     const pages = [];
 
@@ -14,9 +17,8 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
         <ul className={style.paginado}>
             {
             pages && pages.map(num => (
-                <button className={style.number} key={num}>
+                <button className={`${style.number} ${currentPage-1 === num && style.active}`} key={num}>
                     <a onClick={() => pagination(num)}>{num}</a>
-
                 </button>
             ))}
         </ul>
