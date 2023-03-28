@@ -7,6 +7,7 @@ import Pagination from '../pagination/Pagination';
 import style from "./allDogs.module.css";
 import SearchBar from '../searchBar/Search';
 import pepitoJuarez from "../allDogs/pepitoJuarez.png"
+import Loader from '../loader/Loader';
 
 //This function has the complete logic of /home path
 
@@ -22,6 +23,7 @@ const AllDogs = () => {
   const [order, setOrder]= useState('') 
   const [temperament, setTemperament]= useState('all')
   const [dogsPerPage, setDogsPerPage] = useState(8) //this number 8 is the amount of dogs I want to show per page
+  const [load, setLoad]= useState(true);
   const [filter, setFilter]= useState({
     origin: "All",
     temperament: "all",
@@ -81,6 +83,7 @@ const AllDogs = () => {
   const handleFilterByOrigin= (event) => {
     dispatch(filterByOrigin(event.target.value));
     dispatch(setCurrentPage(1));
+    setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
     origin: event.target.value})
   }
@@ -89,6 +92,7 @@ const AllDogs = () => {
     setTemperament(event.target.value)
     dispatch(filterByTemper(event.target.value));
     dispatch(setCurrentPage(1));
+    setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
       temperament: event.target.value})
   }
@@ -97,7 +101,7 @@ const AllDogs = () => {
   const handleClick= (event)=> {
     event.preventDefault();
     dispatch(getAllBreeds());
-    // setDog("");
+    dispatch(setCurrentPage(1));
     setFilter({
       origin: "All",
       temperament: "all",
@@ -110,6 +114,9 @@ const AllDogs = () => {
   // I have to fill my dogs state with the info form my Back. I use the action I created to do this
 
   useEffect(()=> {
+    setTimeout(() => {
+      setLoad(false)
+    }, 2000);
     dispatch(getAllBreeds())
     dispatch(getAllTemperaments())
   }, [dispatch]);
@@ -123,6 +130,7 @@ const AllDogs = () => {
       <div className={style.divGetAllB}>
         <button className={style.refButton} onClick={(event)=> handleClick(event)}>Get all dogs back</button>
       </div>
+      {load && !currentDogs.length ? (<><Loader/></>) : (<>      
 
         <div className={style.filters}>
 
@@ -191,7 +199,9 @@ const AllDogs = () => {
         dogs= {dogs.length}
         pagination= {pagination} />
 
-      {currentDogs.length ? (<div className={style.container}>
+      {currentDogs.length ? (
+      <div className={style.container}>
+    
       {
         currentDogs?.map(dog=> {
           return (
@@ -213,7 +223,8 @@ const AllDogs = () => {
           <h3>This dog does not exist. 😕</h3>
           <img src={pepitoJuarez}/>
           <h3>Would you like to create it? 😎</h3>
-        </div>)}          
+        </div>)} 
+      </>)}         
     </div>
   )
 }

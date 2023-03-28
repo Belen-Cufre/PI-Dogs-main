@@ -87,16 +87,16 @@ const reducer = (state = initialState, action) => {
     
 
         case FILTER_BY_ORIGIN:
-            const filteredOrigin= action.payload === "from_DB" ? state.allDogs.filter( inst => inst.from_DB) : state.allDogs.filter(inst=> !inst.from_DB);
+            const filteredOrigin= action.payload === "All" ? state.allDogs : action.payload === "from_DB" ? state.dogs.filter( inst => inst.from_DB) : state.dogs.filter(inst=> !inst.from_DB);
             return {
                 ...state,
-                dogs: action.payload === "All" ? state.allDogs : filteredOrigin
+                dogs: filteredOrigin
         }
 
         case FILTER_BY_TEMPER:
             let dogsWithChosenTemps =
                 action.payload === "all"
-                ? state.allDogs
+                ? state.dogs
                 : state.allDogs?.filter((dog) => {
                 if (!dog.temperament) return undefined;
                 else return dog.temperament.split(", ").includes(action.payload);

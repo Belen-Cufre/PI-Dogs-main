@@ -1,0 +1,19 @@
+.mainContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 8%;
+    border-radius: 15px;
+    background-color: white;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.gifimg {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 50%;
+    height: 50%;
+
+}

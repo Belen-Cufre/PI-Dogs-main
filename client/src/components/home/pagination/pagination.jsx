@@ -17,7 +17,7 @@ const Pagination = ({dogsPerPage, dogs, pagination}) => {
         <ul className={style.paginado}>
             {
             pages && pages.map(num => (
-                <button className={`${style.number} ${currentPage-1 === num && style.active}`} key={num}>
+                <button className={`${style.number} ${currentPage === num && style.active}`} key={num}>
                     <a onClick={() => pagination(num)}>{num}</a>
                 </button>
             ))}

@@ -33,15 +33,22 @@ const Form = () => {
     }))
   }
 
-  const handleTemperamentChoices = (event) => { //This function checks that you cannot create a dog with a temmperament "happy, happy, happy"
+  const handleTemperamentChoices = (event) => { //This function checks that you cannot create a dog with a temmperament "happy, happy, happy    
     let { value } = event.target;
     if (inputs.temperaments.includes(value)) {
       return alert("Temperaments can not be repeated")
+    }
+    if (value === "all"){
+      return
     }
     setInputs({
       ...inputs,
       temperaments: [...inputs.temperaments, value]
     })
+    setErrors(validate({
+      ...inputs,
+      [event.target.name]: event.target.value
+    }))
   }
 
   const handleDelete = (temp) => { //This function allows you to delete a temperament you don´t want BEFORE creating the dog 
@@ -160,9 +167,9 @@ const Form = () => {
 
           <br />
 
-          <label>Temperaments: </label>
+          <label>Temperaments: 
           <div className={style.temperaments}>
-            <select value={temperaments} onChange={(event) => handleTemperamentChoices(event)}>
+            <select onChange={(event) => handleTemperamentChoices(event)}>
               <option className={style.opciones} value="all"></option>
               {temperaments.map((temp) => {
                 return (
@@ -173,15 +180,17 @@ const Form = () => {
               })}
             </select>
             <h4>My dog is...</h4>
-            <ul className={style.lista}><div>{inputs.temperaments.map(temp => temp + ", ")}</div></ul>
+            <ul className={style.lista}><div>{inputs.temperaments.map(temp => temp + ", ")}</div>
+            </ul>
             <button
               type="submit"
               onClick={(event) => handleSubmit(event)}
               className={style.button} disabled={
-                error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || error.temperaments || !inputs.name
-              }
-            >Add my dog</button>
-          </div>
+                error.name || error.image || error.weightMin || error.weightMax || error.height || error.life_span || !inputs.temperaments.length || !inputs.name}
+              >Add my dog</button>
+              {error.temperaments && <strong>{error.temperaments}</strong>}
+              </div>
+              </label>
         </div>
       </form>
 

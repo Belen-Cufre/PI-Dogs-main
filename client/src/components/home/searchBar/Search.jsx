@@ -14,10 +14,14 @@ const handleChange= (event)=> {
    dispatch(setCurrentPage(1))
 }
 
+const handleClick= (event)=>{
+      setDog("")
+}
+
    return (
       <div className={style.SearchContainer}>
             <input className={style.bar} type='text' value={dog} onChange={(event)=> {setDog(event.target.value); handleChange(event.target.value)}} placeholder='Search for a dog 🔎'/>
-            <button className={style.search} type="submit">Search</button>
+            <button className={style.search} type="submit" onClick={(event)=> handleClick(event)}>Search</button>
       </div>
    );
 }

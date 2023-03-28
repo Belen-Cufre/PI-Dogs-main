@@ -43,7 +43,7 @@ const createNewDogHandler= async (req, res)=> {
     let { weightMin, weightMax, height, name, life_span, image, temperaments, from_DB }= req.body;
     try {
         await createNewDog(weightMin, weightMax, height, name, life_span, image, temperaments)
-        res.status(200).send("New dog successfully created")
+        res.status(201).send("New dog successfully created")
     } catch (error) {
         res.status(400).json({error: error.message})
     }

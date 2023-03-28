@@ -1,9 +1,11 @@
 import React from 'react';
 import { getDogDetail, resetDetail } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import style from "./detail.module.css"
+import NotFound from '../not found/NotFound';
+import Loader from '../home/loader/Loader';
 
 
 const Detail = () => {
@@ -11,7 +13,12 @@ const Detail = () => {
   let { id }= useParams();
   const dogDetail= useSelector((state) => state.dogDetail); //global state
 
+  const [load, setLoad]= useState(true);
+
   useEffect(() => {
+    setTimeout(() => {
+      setLoad(false)
+    }, 1000);
     dispatch(getDogDetail(id))
     return ()=> {
       dispatch(resetDetail()) //this action avoids saving the las visited detail so that when you see a new dogDetail you don´t see the previously seen dog
@@ -19,8 +26,8 @@ const Detail = () => {
   }, [dispatch])
 
   return (
-
-        <div className={style.swiperwrapper}>
+          load ? (<Loader></Loader>) :
+          !Object.keys(dogDetail).length ? (<NotFound></NotFound>) : (<div className={style.swiperwrapper}>
           <figure className={style.swiperSlide}>
             <img src={dogDetail?.image ? dogDetail.image : "img"} alt="img"/>
             <figcaption className={style.swiperDescription}>
@@ -39,7 +46,7 @@ const Detail = () => {
             </Link>
             </figcaption>
           </figure>
-        </div>
+        </div>) 
   )
 }
 

@@ -6,6 +6,7 @@ import Detail from "./components/detail/Detail";
 import Form from "./components/form/Form";
 // import NavBar from "./components/navBar/NavBar";
 import Jwthf from './components/jwthf/JustWatchThemHaveFun';
+import NotFound from './components/not found/NotFound';
 
 
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className={location.pathname === "/" && "Landing"}>
       <Routes>
+        <Route exact path= "*" element={<NotFound/>} />
         <Route exact path= "/" element={<Landing/>} />
         <Route exact path= "/home" element={<Home/>} />
         <Route exact path= "/detail/:id" element={<Detail/>} />

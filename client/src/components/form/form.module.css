@@ -149,7 +149,7 @@ input {
 
 .toDeleteContainer {
     display: flex;
-    margin-left: 40px;
+    margin-left: 160px;
     margin-right: 40px;
     justify-content: left;
     align-items: center;
@@ -164,7 +164,7 @@ input {
     background-color: #e0de34;
     border-radius: 4px;
     margin-top: 1%;
-    margin-left: 90px;
+    margin-left: 40px;
     margin-right: 40px;
     width: 120px;
     padding: 5px;

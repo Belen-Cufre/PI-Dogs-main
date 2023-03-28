@@ -28,10 +28,6 @@ const getBreedsFromApi= async()=> {
                 weightMin = weightMax;
                 averageWeight= averageWeight / 2;
 
-            } else if (weightMin.length === 2) {
-                wweightMax;
-                averageWeight= averageWeight / 2;
-
             } else {
                 if (inst.name === "Smooth Fox Terrier") {
                     weightMin = 8;
@@ -145,7 +141,7 @@ const getBreedById = async (id, origin) => {
 						? dogDB.Temperaments.map((el) => el.name).join(', ')
 						: 'Happy',
 					from_DB: true,
-				};
+				}
 			}
 		} else {
 
