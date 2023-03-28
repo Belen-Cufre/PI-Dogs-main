@@ -4,8 +4,7 @@ import Landing from './components/landingPage/landing/Landing';
 import Home from "./components/home/Home";
 import Detail from "./components/detail/Detail";
 import Form from "./components/form/Form";
-// import NavBar from "./components/navBar/NavBar";
-import Jwthf from './components/jwthf/JustWatchThemHaveFun';
+// import Jwthf from './components/jwthf/JustWatchThemHaveFun';
 import NotFound from './components/not found/NotFound';
 
 

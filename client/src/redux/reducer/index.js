@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    let aux = []; //auxiliary
+    let aux = []; //auxiliary to use in weights
 
     switch(action.type) {
         case GET_ALL_BREEDS:

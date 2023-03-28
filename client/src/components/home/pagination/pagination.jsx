@@ -2,7 +2,7 @@ import React from "react";
 import style from "./pagination.module.css"
 import { useSelector } from "react-redux";
 
-const Pagination = ({dogsPerPage, dogs, pagination}) => {
+const Pagination = ({dogsPerPage, dogs, pagination}) => { //pagination is called on the number button because this function dispatches the action setCurrentPage
 
     const currentPage=  useSelector(state=> state.currentPage);
 

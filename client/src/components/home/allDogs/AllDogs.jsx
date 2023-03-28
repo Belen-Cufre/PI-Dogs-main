@@ -17,10 +17,10 @@ const AllDogs = () => {
 
   const dispatch= useDispatch();
   const dogs= useSelector(state => state.dogs); //global state
-  const currentPage= useSelector(state => state.currentPage);
+  const currentPage= useSelector(state => state.currentPage); //global state
 
   //local states
-  const [order, setOrder]= useState('') 
+  // const [order, setOrder]= useState('')
   const [temperament, setTemperament]= useState('all')
   const [dogsPerPage, setDogsPerPage] = useState(8) //this number 8 is the amount of dogs I want to show per page
   const [load, setLoad]= useState(true);
@@ -54,7 +54,7 @@ const AllDogs = () => {
   const handleOrder1= (event) => {
     dispatch(orderByName(event.target.value));
     dispatch(setCurrentPage(1));
-    setOrder(`Ordered ${event.target.value}`)
+    // setOrder(`Ordered ${event.target.value}`)
     setFilter({...filter,
       name: event.target.value
     });
@@ -63,7 +63,7 @@ const AllDogs = () => {
   const handleOrder2 = (event) =>{
     dispatch(orderByWeight(event.target.value))
     dispatch(setCurrentPage(1));
-    setOrder(`Ordered ${event.target.value}`);
+    // setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
       weight: event.target.value,
     });
@@ -72,7 +72,7 @@ const AllDogs = () => {
   const handleOrder3 = (event) =>{
     dispatch(orderByWeight(event.target.value))
     dispatch(setCurrentPage(1));
-    setOrder(`Ordered ${event.target.value}`);
+    // setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
       aver: event.target.value,
     });
@@ -83,7 +83,7 @@ const AllDogs = () => {
   const handleFilterByOrigin= (event) => {
     dispatch(filterByOrigin(event.target.value));
     dispatch(setCurrentPage(1));
-    setOrder(`Ordered ${event.target.value}`);
+    // setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
     origin: event.target.value})
   }
@@ -92,7 +92,7 @@ const AllDogs = () => {
     setTemperament(event.target.value)
     dispatch(filterByTemper(event.target.value));
     dispatch(setCurrentPage(1));
-    setOrder(`Ordered ${event.target.value}`);
+    // setOrder(`Ordered ${event.target.value}`);
     setFilter({...filter,
       temperament: event.target.value})
   }
@@ -111,8 +111,7 @@ const AllDogs = () => {
     })
   }  
 
-  // I have to fill my dogs state with the info form my Back. I use the action I created to do this
-
+  //I want all what follows to happen when my component mounts
   useEffect(()=> {
     setTimeout(() => {
       setLoad(false)
@@ -122,6 +121,7 @@ const AllDogs = () => {
   }, [dispatch]);
 
 
+  
   //All the logic done, I return what I want to be rendered
 
   return (

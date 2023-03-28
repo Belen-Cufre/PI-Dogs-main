@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const {gettingAlltempsfromApi}= require("./src/controllers/tempControllers")
+// const {gettingAlltempsfromApi}= require("./src/controllers/tempControllers")
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {

@@ -33,7 +33,7 @@ const Form = () => {
     }))
   }
 
-  const handleTemperamentChoices = (event) => { //This function checks that you cannot create a dog with a temmperament "happy, happy, happy    
+  const handleTemperamentChoices = (event) => { //This function checks that you cannot create a dog with a temmperament "happy, happy, happy"    
     let { value } = event.target;
     if (inputs.temperaments.includes(value)) {
       return alert("Temperaments can not be repeated")
