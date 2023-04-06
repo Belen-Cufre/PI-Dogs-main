@@ -6,7 +6,7 @@ GET_DOGS_BY_NAME, GET_DOG_DETAIL, CREATE_DOG, RESET_DETAIL, GET_NAME, SET_CURREN
 
 export const getAllBreeds = ()=> {
     return async function(dispatch){
-        const info= await axios("http://localhost:3001/dogs")
+        const info= await axios("https://dogapi-j8tp.onrender.com/dogs")
         return dispatch({
             type: GET_ALL_BREEDS,
             payload: info.data
@@ -16,7 +16,7 @@ export const getAllBreeds = ()=> {
 
 export const getAllTemperaments = () => {
     return async function (dispatch) {
-        let json = await axios.get('http://localhost:3001/temperaments');
+        let json = await axios.get('https://dogapi-j8tp.onrender.com/temperaments');
         let listOfTemperaments = json.data.map(el => el.name)
         return dispatch({
             type: GET_ALL_TEMPS,
@@ -56,7 +56,7 @@ export const filterByTemper= (payload)=> {
 export const getDogsByName= (name)=> {
     return async function (dispatch){
         try {
-          let json = await axios (`http://localhost:3001/dogs?name=${name}`)
+          let json = await axios (`https://dogapi-j8tp.onrender.com/dogs?name=${name}`)
           return dispatch({
             type: GET_DOGS_BY_NAME,
             payload: json.data
@@ -77,7 +77,7 @@ export const getName= (name)=> {
 
 export const getDogDetail= (id)=> {
     return async function(dispatch){
-        let json = await axios (`http://localhost:3001/dogs/${id}`)
+        let json = await axios (`https://dogapi-j8tp.onrender.com/dogs/${id}`)
 
         return dispatch({
             type: GET_DOG_DETAIL,
@@ -88,7 +88,7 @@ export const getDogDetail= (id)=> {
 
 export const createNewDog= (payload)=> {
     return async function(dispatch){
-        let newDog= await axios.post("http://localhost:3001/dogs", payload);
+        let newDog= await axios.post("https://dogapi-j8tp.onrender.com/dogs", payload);
         return newDog
     }
 }
